@@ -1,0 +1,1845 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Latihan TKA Bahasa Indonesia 2025</title>
+<style>
+:root {
+  --bg: #F0F4F8;
+  --surface: #FFFFFF;
+  --surface2: #F7F9FC;
+  --border: #DDE3EC;
+  --text: #1A2332;
+  --text-muted: #5A6A7E;
+  --text-light: #8A9BB0;
+  --primary: #2563EB;
+  --primary-light: #EEF4FF;
+  --primary-dark: #1D4ED8;
+  --success: #16A34A;
+  --success-light: #DCFCE7;
+  --warning: #D97706;
+  --warning-light: #FEF3C7;
+  --danger: #DC2626;
+  --danger-light: #FEE2E2;
+  --gray: #6B7280;
+  --gray-light: #F3F4F6;
+  --answered: #16A34A;
+  --flagged: #D97706;
+  --active: #2563EB;
+  --unanswered: #CBD5E1;
+  --radius: 8px;
+  --radius-lg: 12px;
+  --shadow: 0 1px 3px rgba(0,0,0,.08), 0 4px 12px rgba(0,0,0,.04);
+  --shadow-lg: 0 4px 16px rgba(0,0,0,.12);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0F172A;
+    --surface: #1E293B;
+    --surface2: #162033;
+    --border: #334155;
+    --text: #E2E8F0;
+    --text-muted: #94A3B8;
+    --text-light: #64748B;
+    --primary-light: #1E3A6E;
+    --success-light: #14532D;
+    --warning-light: #78350F;
+    --danger-light: #7F1D1D;
+    --gray-light: #1E293B;
+    --unanswered: #475569;
+  }
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 16px; }
+body {
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  line-height: 1.6;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+/* ===== SCREENS ===== */
+.screen { display: none; }
+.screen.active { display: block; }
+
+/* ===== WELCOME SCREEN ===== */
+#welcomeScreen {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 32px 20px 48px;
+}
+.welcome-header {
+  text-align: center;
+  margin-bottom: 32px;
+}
+.welcome-badge {
+  display: inline-block;
+  background: var(--primary-light);
+  color: var(--primary);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: .5px;
+  padding: 4px 12px;
+  border-radius: 20px;
+  margin-bottom: 16px;
+}
+.welcome-header h1 {
+  font-size: clamp(22px, 4vw, 30px);
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.3;
+  margin-bottom: 8px;
+}
+.welcome-header p {
+  color: var(--text-muted);
+  font-size: 15px;
+}
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.info-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px 12px;
+  text-align: center;
+  box-shadow: var(--shadow);
+}
+.info-card .ic-val {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--primary);
+  display: block;
+}
+.info-card .ic-lbl {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+.panel {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  margin-bottom: 20px;
+  box-shadow: var(--shadow);
+}
+.panel h3 {
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 14px;
+  color: var(--text);
+}
+.instr-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.instr-list li {
+  display: flex;
+  gap: 10px;
+  font-size: 14px;
+  color: var(--text-muted);
+  align-items: flex-start;
+}
+.instr-list li::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--primary);
+  margin-top: 8px;
+  flex-shrink: 0;
+}
+.notice {
+  background: var(--warning-light);
+  border-left: 3px solid var(--warning);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  padding: 12px 14px;
+  font-size: 13px;
+  color: var(--text);
+  margin-bottom: 20px;
+}
+.btn-start {
+  display: block;
+  width: 100%;
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius);
+  padding: 15px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background .15s, transform .1s;
+}
+.btn-start:hover { background: var(--primary-dark); }
+.btn-start:active { transform: scale(.99); }
+
+/* ===== EXAM LAYOUT ===== */
+#examScreen {
+  display: none;
+  height: 100vh;
+  display: none;
+  flex-direction: column;
+}
+#examScreen.active {
+  display: flex;
+}
+
+/* Top bar */
+.exam-topbar {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  padding: 0 20px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-shrink: 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: var(--shadow);
+}
+.topbar-left h2 {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+}
+.topbar-left span {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+.timer-display {
+  background: var(--primary);
+  color: #fff;
+  border-radius: 8px;
+  padding: 6px 14px;
+  font-size: 18px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 1px;
+  transition: background .3s;
+}
+.timer-display.warn { background: var(--warning); }
+.timer-display.danger { background: var(--danger); }
+
+/* Main area */
+.exam-body {
+  flex: 1;
+  display: flex;
+  overflow: hidden;
+}
+
+/* Question area */
+.question-area {
+  flex: 1;
+  overflow-y: auto;
+  padding: 24px 20px;
+}
+.question-card {
+  max-width: 720px;
+  margin: 0 auto;
+}
+.q-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+.q-num {
+  background: var(--primary);
+  color: #fff;
+  border-radius: 8px;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 15px;
+  flex-shrink: 0;
+}
+.q-meta {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+.q-difficulty {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 20px;
+  margin-left: 6px;
+}
+.q-difficulty.mudah { background: var(--success-light); color: var(--success); }
+.q-difficulty.sedang { background: var(--primary-light); color: var(--primary); }
+.q-difficulty.sulit { background: var(--warning-light); color: var(--warning); }
+.q-difficulty.sangat-sulit { background: var(--danger-light); color: var(--danger); }
+
+.q-text-box {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px 18px;
+  margin-bottom: 16px;
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--text);
+}
+.q-teks-title {
+  font-weight: 600;
+  font-size: 13px;
+  color: var(--primary);
+  margin-bottom: 8px;
+}
+.q-question {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--text);
+  margin-bottom: 18px;
+  line-height: 1.65;
+}
+.options-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.option-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  background: var(--surface);
+  border: 2px solid var(--border);
+  border-radius: var(--radius);
+  padding: 13px 16px;
+  cursor: pointer;
+  transition: border-color .15s, background .15s;
+  font-size: 14px;
+}
+.option-item:hover {
+  border-color: var(--primary);
+  background: var(--primary-light);
+}
+.option-item.selected {
+  border-color: var(--primary);
+  background: var(--primary-light);
+}
+.opt-letter {
+  width: 26px;
+  height: 26px;
+  border: 2px solid var(--border);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-muted);
+  flex-shrink: 0;
+  transition: all .15s;
+}
+.option-item.selected .opt-letter {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: #fff;
+}
+.opt-text { line-height: 1.55; color: var(--text); }
+
+/* Nav buttons */
+.q-nav {
+  display: flex;
+  gap: 10px;
+  margin-top: 24px;
+  flex-wrap: wrap;
+}
+.btn-nav, .btn-flag, .btn-submit {
+  padding: 10px 18px;
+  border-radius: var(--radius);
+  border: none;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all .15s;
+}
+.btn-nav {
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  color: var(--text);
+}
+.btn-nav:hover { border-color: var(--primary); color: var(--primary); }
+.btn-nav:disabled { opacity: .4; cursor: not-allowed; }
+.btn-flag {
+  background: var(--warning-light);
+  color: var(--warning);
+  border: 1.5px solid var(--warning);
+}
+.btn-flag.flagged {
+  background: var(--warning);
+  color: #fff;
+}
+.btn-submit {
+  margin-left: auto;
+  background: var(--primary);
+  color: #fff;
+}
+.btn-submit:hover { background: var(--primary-dark); }
+
+/* Sidebar */
+.exam-sidebar {
+  width: 280px;
+  background: var(--surface);
+  border-left: 1px solid var(--border);
+  overflow-y: auto;
+  flex-shrink: 0;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.sidebar-section h4 {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .5px;
+  color: var(--text-muted);
+  margin-bottom: 12px;
+}
+
+/* Status */
+.status-row {
+  display: flex;
+  gap: 8px;
+}
+.status-pill {
+  flex: 1;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 8px 6px;
+  text-align: center;
+}
+.status-pill .sp-val {
+  font-size: 18px;
+  font-weight: 700;
+  display: block;
+}
+.status-pill .sp-lbl { font-size: 10px; color: var(--text-muted); }
+.sp-answered .sp-val { color: var(--success); }
+.sp-unanswered .sp-val { color: var(--text-muted); }
+.sp-flagged .sp-val { color: var(--warning); }
+
+/* Grid */
+.num-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 6px;
+}
+.num-btn {
+  aspect-ratio: 1;
+  border: 2px solid var(--unanswered);
+  background: transparent;
+  border-radius: 7px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  color: var(--text-muted);
+  transition: all .15s;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.num-btn.answered { border-color: var(--answered); color: var(--answered); background: var(--success-light); }
+.num-btn.flagged { border-color: var(--flagged); color: var(--flagged); background: var(--warning-light); }
+.num-btn.active { border-color: var(--active); background: var(--active); color: #fff !important; }
+.num-btn.active.answered::after,
+.num-btn.active.flagged::after {
+  content: '•';
+  position: absolute;
+  top: 1px;
+  right: 3px;
+  font-size: 10px;
+  color: rgba(255,255,255,.8);
+}
+
+/* Legend */
+.legend {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: var(--text-muted);
+}
+.legend-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 4px;
+  border: 2px solid;
+  flex-shrink: 0;
+}
+.ld-answered { border-color: var(--answered); background: var(--success-light); }
+.ld-active { border-color: var(--active); background: var(--active); }
+.ld-flagged { border-color: var(--flagged); background: var(--warning-light); }
+.ld-unanswered { border-color: var(--unanswered); background: transparent; }
+
+/* ===== MODAL ===== */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.5);
+  z-index: 1000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+.modal-overlay.open { display: flex; }
+.modal {
+  background: var(--surface);
+  border-radius: var(--radius-lg);
+  padding: 28px;
+  max-width: 460px;
+  width: 100%;
+  box-shadow: var(--shadow-lg);
+}
+.modal h3 { font-size: 18px; font-weight: 700; margin-bottom: 8px; }
+.modal p { font-size: 14px; color: var(--text-muted); margin-bottom: 4px; }
+.modal-stats {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 14px 16px;
+  margin: 16px 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.ms-item { font-size: 13px; color: var(--text-muted); }
+.ms-item strong { color: var(--text); display: block; font-size: 16px; }
+.modal-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+.btn-cancel {
+  flex: 1;
+  padding: 11px;
+  border-radius: var(--radius);
+  border: 1.5px solid var(--border);
+  background: transparent;
+  color: var(--text);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.btn-confirm {
+  flex: 1;
+  padding: 11px;
+  border-radius: var(--radius);
+  border: none;
+  background: var(--primary);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.btn-confirm.danger-btn { background: var(--danger); }
+
+/* ===== RESULT SCREEN ===== */
+#resultScreen {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 32px 20px 48px;
+}
+.result-hero {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+  border-radius: var(--radius-lg);
+  padding: 32px 24px;
+  text-align: center;
+  color: #fff;
+  margin-bottom: 24px;
+}
+.result-hero .score-val {
+  font-size: 64px;
+  font-weight: 800;
+  line-height: 1;
+  margin-bottom: 4px;
+}
+.result-hero .score-label { font-size: 14px; opacity: .85; }
+.result-hero .theta-val { font-size: 16px; margin-top: 12px; opacity: .9; }
+.result-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin-bottom: 20px;
+}
+.result-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px;
+  box-shadow: var(--shadow);
+}
+.result-card .rc-val {
+  font-size: 28px;
+  font-weight: 700;
+  display: block;
+  margin-bottom: 2px;
+}
+.result-card .rc-lbl { font-size: 13px; color: var(--text-muted); }
+.rc-correct .rc-val { color: var(--success); }
+.rc-wrong .rc-val { color: var(--danger); }
+.rc-skip .rc-val { color: var(--gray); }
+.rc-pct .rc-val { color: var(--primary); }
+.result-panel {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+  margin-bottom: 16px;
+  box-shadow: var(--shadow);
+}
+.result-panel h3 { font-size: 15px; font-weight: 600; margin-bottom: 14px; }
+.comp-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 13px;
+}
+.comp-row:last-child { border-bottom: none; }
+.comp-name { color: var(--text-muted); max-width: 70%; }
+.comp-score { font-weight: 600; color: var(--text); }
+.irt-note {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 14px 16px;
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-bottom: 20px;
+  line-height: 1.6;
+}
+.result-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.btn-action {
+  flex: 1;
+  min-width: 140px;
+  padding: 13px 16px;
+  border-radius: var(--radius);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: all .15s;
+  text-align: center;
+}
+.btn-review { background: var(--surface); border: 1.5px solid var(--border); color: var(--text); }
+.btn-review:hover { border-color: var(--primary); color: var(--primary); }
+.btn-retry { background: var(--primary); color: #fff; }
+.btn-retry:hover { background: var(--primary-dark); }
+
+/* ===== REVIEW SCREEN ===== */
+#reviewScreen {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 24px 20px 48px;
+}
+.review-topbar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.btn-back {
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius);
+  padding: 8px 14px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  color: var(--text);
+}
+.review-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  margin-bottom: 16px;
+  box-shadow: var(--shadow);
+}
+.review-card-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 14px;
+  flex-wrap: wrap;
+}
+.rev-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+}
+.rev-correct { background: var(--success-light); color: var(--success); }
+.rev-wrong { background: var(--danger-light); color: var(--danger); }
+.rev-skip { background: var(--gray-light); color: var(--gray); }
+.review-q-text {
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 14px;
+  line-height: 1.65;
+}
+.review-options {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  margin-bottom: 16px;
+}
+.review-opt {
+  display: flex;
+  gap: 10px;
+  padding: 9px 12px;
+  border-radius: 8px;
+  font-size: 13px;
+  border: 1.5px solid var(--border);
+  align-items: flex-start;
+}
+.review-opt.correct-ans { border-color: var(--success); background: var(--success-light); }
+.review-opt.user-wrong { border-color: var(--danger); background: var(--danger-light); }
+.pembahasan-box {
+  background: var(--surface2);
+  border-left: 3px solid var(--primary);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  padding: 14px 16px;
+  font-size: 13px;
+  color: var(--text-muted);
+  line-height: 1.7;
+}
+.pembahasan-box strong { color: var(--text); display: block; margin-bottom: 6px; }
+.review-nav {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 640px) {
+  .exam-sidebar { display: none; }
+  .exam-topbar { padding: 0 12px; }
+  .question-area { padding: 16px 12px; }
+  .info-grid { grid-template-columns: 1fr 1fr; }
+  .result-grid { grid-template-columns: 1fr 1fr; }
+  .exam-bottom-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    padding: 10px 12px;
+    padding-bottom: calc(10px + env(safe-area-inset-bottom, 0px));
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    z-index: 50;
+  }
+  .q-nav { display: none; }
+  .question-area { padding-bottom: 120px; }
+  .mobile-grid-toggle {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 12px;
+    background: var(--surface);
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius);
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    color: var(--text);
+  }
+}
+@media (min-width: 641px) {
+  .exam-bottom-bar { display: none; }
+  .mobile-grid-toggle { display: none; }
+}
+
+/* Mobile grid drawer */
+.mobile-grid-drawer {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  padding: 20px;
+  padding-bottom: calc(20px + env(safe-area-inset-bottom, 0px));
+  z-index: 200;
+  box-shadow: 0 -4px 20px rgba(0,0,0,.15);
+  max-height: 60vh;
+  overflow-y: auto;
+}
+.mobile-grid-drawer.open { display: block; }
+.drawer-handle {
+  width: 36px;
+  height: 4px;
+  background: var(--border);
+  border-radius: 2px;
+  margin: 0 auto 16px;
+}
+
+
+.mobile-grid-inline { display: none; }
+@media (max-width: 640px) {
+  .mobile-grid-inline {
+    display: block;
+    flex-shrink: 0;
+    padding: 8px 12px 10px;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+  }
+  .mobile-grid-inline-label {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--text-muted);
+    margin-bottom: 6px;
+  }
+  .mobile-grid-inline .num-grid {
+    grid-template-columns: repeat(10, minmax(0, 1fr));
+    gap: 4px;
+  }
+  .mobile-grid-inline .num-btn {
+    aspect-ratio: auto;
+    min-height: 28px;
+    border-radius: 5px;
+    font-size: 11px;
+  }
+  .mobile-grid-toggle { display: none !important; }
+  .mobile-grid-drawer { display: none !important; }
+  .exam-body { min-height: 0; }
+}
+
+/* Toast */
+.toast {
+  position: fixed;
+  top: 70px;
+  left: 50%;
+  transform: translateX(-50%) translateY(-10px);
+  background: var(--text);
+  color: var(--surface);
+  padding: 10px 20px;
+  border-radius: 24px;
+  font-size: 13px;
+  font-weight: 500;
+  opacity: 0;
+  transition: all .3s;
+  z-index: 500;
+  white-space: nowrap;
+}
+.toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* Loading */
+.loading-overlay {
+  position: fixed;
+  inset: 0;
+  background: var(--bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  flex-direction: column;
+  gap: 16px;
+}
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid var(--border);
+  border-top-color: var(--primary);
+  border-radius: 50%;
+  animation: spin .8s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+</style>
+</head>
+<body>
+
+<!-- Loading -->
+<div class="loading-overlay" id="loadingOverlay">
+  <div class="spinner"></div>
+  <span style="font-size:14px;color:var(--text-muted)">Memuat soal...</span>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast"></div>
+
+<!-- ===== WELCOME ===== -->
+<div id="welcomeScreen" class="screen active">
+  <div class="welcome-header">
+    <div class="welcome-badge">Simulasi TKA 2025</div>
+    <h1>Latihan Tes Kompetensi Akademik<br>Bahasa Indonesia</h1>
+    <p>SMA/MA/SMK — Pilihan Ganda</p>
+  </div>
+  <div class="info-grid">
+    <div class="info-card">
+      <span class="ic-val">30</span>
+      <div class="ic-lbl">Jumlah Soal</div>
+    </div>
+    <div class="info-card">
+      <span class="ic-val">75'</span>
+      <div class="ic-lbl">Durasi</div>
+    </div>
+    <div class="info-card">
+      <span class="ic-val">200–800</span>
+      <div class="ic-lbl">Rentang Nilai</div>
+    </div>
+  </div>
+  <div class="panel">
+    <h3>Petunjuk Pengerjaan</h3>
+    <ul class="instr-list">
+      <li>Baca setiap teks dan soal dengan cermat sebelum menjawab.</li>
+      <li>Pilih satu jawaban yang paling tepat untuk setiap soal.</li>
+      <li>Gunakan tombol "Tandai Ragu-ragu" untuk menandai soal yang belum yakin.</li>
+      <li>Kamu dapat berpindah soal kapan saja menggunakan navigasi atau grid nomor soal.</li>
+      <li>Jawaban otomatis tersimpan setiap kali berpindah soal.</li>
+      <li>Nilai hanya dihitung setelah kamu menekan tombol "Kirim Jawaban" dan mengonfirmasi.</li>
+      <li>Jika halaman tidak sengaja dimuat ulang, progres dan timer akan dipulihkan otomatis.</li>
+    </ul>
+  </div>
+  <div class="notice">
+    ⚠️ Penilaian menggunakan simulasi IRT 2PL dengan parameter daya pembeda (a) dan kesulitan (b) yang ditetapkan pada tiap soal. Skor dihitung dari jawabanmu sendiri; tidak membandingkan dengan peserta lain dan tidak membutuhkan data peserta lain saat ujian. Parameter belum dikalibrasi empiris, jadi hasilnya merupakan estimasi latihan, bukan skor resmi TKA.
+  </div>
+  <button class="btn-start" id="btnStart">Mulai Ujian →</button>
+</div>
+
+<!-- ===== EXAM ===== -->
+<div id="examScreen" class="screen">
+  <!-- Topbar -->
+  <div class="exam-topbar">
+    <div class="topbar-left">
+      <div><strong style="font-size:14px">TKA Bahasa Indonesia</strong></div>
+      <div id="topbarProgress" style="font-size:12px;color:var(--text-muted)">Soal 1 dari 30</div>
+    </div>
+    <div id="timerDisplay" class="timer-display">75:00</div>
+    <button class="mobile-grid-toggle" id="mobileGridToggle">≡ Grid</button>
+  </div>
+
+  <!-- Grid soal selalu terlihat di perangkat mobile, tepat di bawah navigasi atas -->
+  <div class="mobile-grid-inline">
+    <div class="mobile-grid-inline-label">Navigasi Soal</div>
+    <div class="num-grid" id="numGridMobileInline"></div>
+  </div>
+
+  <!-- Body -->
+  <div class="exam-body">
+    <!-- Question -->
+    <div class="question-area" id="questionArea">
+      <div class="question-card" id="questionCard">
+        <!-- Rendered by JS -->
+      </div>
+    </div>
+
+    <!-- Sidebar -->
+    <div class="exam-sidebar">
+      <div class="sidebar-section">
+        <h4>Status Pengerjaan</h4>
+        <div class="status-row">
+          <div class="status-pill sp-answered">
+            <span class="sp-val" id="sidebarAnswered">0</span>
+            <div class="sp-lbl">Dijawab</div>
+          </div>
+          <div class="status-pill sp-unanswered">
+            <span class="sp-val" id="sidebarUnanswered">30</span>
+            <div class="sp-lbl">Belum</div>
+          </div>
+          <div class="status-pill sp-flagged">
+            <span class="sp-val" id="sidebarFlagged">0</span>
+            <div class="sp-lbl">Ragu</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sidebar-section">
+        <h4>Navigasi Soal</h4>
+        <div class="num-grid" id="numGrid"></div>
+      </div>
+
+      <div class="sidebar-section">
+        <h4>Keterangan</h4>
+        <div class="legend">
+          <div class="legend-item"><div class="legend-dot ld-active"></div>Soal aktif</div>
+          <div class="legend-item"><div class="legend-dot ld-answered"></div>Sudah dijawab</div>
+          <div class="legend-item"><div class="legend-dot ld-flagged"></div>Ditandai ragu-ragu</div>
+          <div class="legend-item"><div class="legend-dot ld-unanswered"></div>Belum dijawab</div>
+        </div>
+      </div>
+
+      <button class="btn-submit" id="btnSubmitSidebar" style="margin-top:auto">Kirim Jawaban</button>
+    </div>
+  </div>
+
+  <!-- Mobile bottom bar -->
+  <div class="exam-bottom-bar">
+    <button class="btn-nav" id="btnPrevMobile">← Sebelumnya</button>
+    <button class="btn-flag" id="btnFlagMobile">Ragu</button>
+    <button class="btn-nav" id="btnNextMobile">Berikutnya →</button>
+    <button class="btn-submit" id="btnSubmitMobile">Kirim</button>
+  </div>
+</div>
+
+<!-- Mobile grid drawer -->
+<div class="mobile-grid-drawer" id="mobileGridDrawer">
+  <div class="drawer-handle"></div>
+  <div style="margin-bottom:12px">
+    <div class="status-row">
+      <div class="status-pill sp-answered">
+        <span class="sp-val" id="drawerAnswered">0</span>
+        <div class="sp-lbl">Dijawab</div>
+      </div>
+      <div class="status-pill sp-unanswered">
+        <span class="sp-val" id="drawerUnanswered">30</span>
+        <div class="sp-lbl">Belum</div>
+      </div>
+      <div class="status-pill sp-flagged">
+        <span class="sp-val" id="drawerFlagged">0</span>
+        <div class="sp-lbl">Ragu</div>
+      </div>
+    </div>
+  </div>
+  <div class="num-grid" id="numGridMobile"></div>
+  <div style="height:12px"></div>
+  <div class="legend" style="flex-direction:row;flex-wrap:wrap;gap:10px">
+    <div class="legend-item"><div class="legend-dot ld-active"></div>Aktif</div>
+    <div class="legend-item"><div class="legend-dot ld-answered"></div>Dijawab</div>
+    <div class="legend-item"><div class="legend-dot ld-flagged"></div>Ragu</div>
+    <div class="legend-item"><div class="legend-dot ld-unanswered"></div>Belum</div>
+  </div>
+</div>
+
+<!-- ===== SUBMIT MODAL ===== -->
+<div class="modal-overlay" id="submitModal">
+  <div class="modal">
+    <h3>Konfirmasi Pengumpulan</h3>
+    <p>Apakah kamu yakin ingin mengumpulkan jawaban sekarang?</p>
+    <div class="modal-stats" id="submitModalStats"></div>
+    <p style="font-size:12px;color:var(--text-muted)">Setelah dikumpulkan, jawaban tidak dapat diubah.</p>
+    <div class="modal-actions">
+      <button class="btn-cancel" id="btnCancelSubmit">Kembali Mengerjakan</button>
+      <button class="btn-confirm" id="btnConfirmSubmit">Ya, Kumpulkan</button>
+    </div>
+  </div>
+</div>
+
+<!-- ===== TIME WARNING MODAL ===== -->
+<div class="modal-overlay" id="timeModal">
+  <div class="modal">
+    <h3 id="timeModalTitle">⏱ Peringatan Waktu</h3>
+    <p id="timeModalMsg"></p>
+    <div class="modal-actions">
+      <button class="btn-confirm" id="btnTimeOk">Mengerti</button>
+    </div>
+  </div>
+</div>
+
+<!-- ===== RESULT ===== -->
+<div id="resultScreen" class="screen">
+  <div class="result-hero">
+    <div class="score-val" id="finalScore">–</div>
+    <div class="score-label">Skor IRT Simulasi (200–800)</div>
+    <div class="theta-val" id="finalTheta">θ = –</div>
+  </div>
+  <div class="result-grid">
+    <div class="result-card rc-correct">
+      <span class="rc-val" id="rCorrect">–</span>
+      <div class="rc-lbl">Jawaban Benar</div>
+    </div>
+    <div class="result-card rc-wrong">
+      <span class="rc-val" id="rWrong">–</span>
+      <div class="rc-lbl">Jawaban Salah</div>
+    </div>
+    <div class="result-card rc-skip">
+      <span class="rc-val" id="rSkip">–</span>
+      <div class="rc-lbl">Tidak Dijawab</div>
+    </div>
+    <div class="result-card rc-pct">
+      <span class="rc-val" id="rPct">–</span>
+      <div class="rc-lbl">% dari yang Dijawab</div>
+    </div>
+  </div>
+  <div class="result-panel" id="compPanel">
+    <h3>Performa per Kompetensi</h3>
+    <div id="compRows"></div>
+  </div>
+  <div class="result-panel">
+    <h3>Waktu Pengerjaan</h3>
+    <p id="timeTaken" style="font-size:14px;color:var(--text-muted)"></p>
+  </div>
+  <div class="irt-note">
+    <strong>Catatan Metode Penilaian:</strong> Skor dihitung menggunakan simulasi IRT 2PL (Two-Parameter Logistic). Estimasi kemampuan θ diperoleh melalui Maximum Likelihood Estimation (MLE) dengan iterasi Newton-Raphson. Kasus ekstrem (semua benar/salah) ditangani dengan MAP menggunakan prior N(0,1). Soal yang tidak dijawab diperlakukan sebagai <em>missing response</em> dan tidak diikutkan dalam estimasi. Skor akhir: 200 + 600 × Φ(θ), di mana Φ adalah fungsi distribusi normal kumulatif. Parameter a dan b ditetapkan untuk tiap soal dan merupakan perkiraan simulasi, bukan hasil kalibrasi empiris. Estimasi dihitung dari jawaban peserta ini saja; tidak menggunakan jawaban peserta lain.
+  </div>
+  <div class="result-actions">
+    <button class="btn-action btn-review" id="btnGoReview">Lihat Pembahasan</button>
+    <button class="btn-action btn-retry" id="btnRetry">Ulangi Ujian</button>
+  </div>
+</div>
+
+<!-- ===== REVIEW ===== -->
+<div id="reviewScreen" class="screen">
+  <div class="review-topbar">
+    <button class="btn-back" id="btnBackToResult">← Kembali</button>
+    <h2 style="font-size:16px;font-weight:700">Pembahasan Soal</h2>
+  </div>
+  <div id="reviewCards"></div>
+  <div class="review-nav">
+    <button class="btn-action btn-review" id="btnReviewPrev" style="flex:0 0 auto;min-width:unset;padding:10px 18px">← Sebelumnya</button>
+    <span id="reviewPageInfo" style="font-size:13px;color:var(--text-muted);align-self:center"></span>
+    <button class="btn-action btn-review" id="btnReviewNext" style="flex:0 0 auto;min-width:unset;padding:10px 18px">Berikutnya →</button>
+  </div>
+</div>
+
+<script>
+// ===================================================
+// DATA SOAL
+// ===================================================
+const QUESTIONS = [
+  {id:1,teks_judul:"Kearifan Lokal dalam Tradisi Sedekah Bumi",teks:`Tradisi sedekah bumi merupakan warisan budaya yang masih hidup di berbagai wilayah Jawa dan Sunda. Tradisi ini dilaksanakan sebagai ungkapan rasa syukur masyarakat kepada Tuhan atas hasil bumi yang melimpah, sekaligus sebagai bentuk penghormatan terhadap leluhur yang dianggap menjaga kesuburan tanah. Dalam praktiknya, sedekah bumi melibatkan prosesi adat yang kaya simbolisme, mulai dari penyiapan tumpeng, sesajen, hingga pertunjukan seni tradisional seperti wayang kulit atau tayuban.<br><br>Namun, di tengah arus modernisasi, tradisi ini menghadapi tantangan yang tidak kecil. Generasi muda semakin jauh dari akar budayanya, menganggap tradisi sedekah bumi sebagai kegiatan yang kuno dan tidak relevan dengan kehidupan modern. Anggapan ini diperkuat oleh kurangnya pemahaman terhadap makna filosofis yang terkandung di dalamnya. Padahal, sedekah bumi bukan sekadar ritual seremonial, melainkan sebuah sistem nilai yang mengajarkan keseimbangan antara manusia, alam, dan Tuhan.<br><br>Dari perspektif ekologi, sedekah bumi sesungguhnya menyimpan kearifan yang sangat relevan dengan isu lingkungan masa kini. Masyarakat tradisional yang merawat tradisi ini cenderung memiliki kesadaran ekologis yang tinggi, karena mereka memandang alam bukan sebagai objek eksploitasi, melainkan sebagai entitas hidup yang harus dijaga. Oleh karena itu, pelestarian tradisi sedekah bumi seharusnya tidak dilihat semata-mata sebagai upaya konservasi budaya, tetapi juga sebagai langkah strategis dalam membangun kesadaran lingkungan di masyarakat.`,materi:"Pemahaman Tekstual – Makna kata serapan/daerah",kesulitan:"Mudah",soal:"Apa makna kata <em>sesajen</em> dalam konteks teks tersebut?",pilihan:{A:"Makanan yang disajikan untuk tamu undangan dalam acara adat",B:"Persembahan berupa benda atau makanan yang disiapkan dalam ritual tertentu",C:"Hiasan dekoratif yang digunakan dalam pertunjukan seni tradisional",D:"Kumpulan doa yang dilantunkan selama prosesi adat berlangsung",E:"Pakaian adat yang dikenakan oleh pemimpin upacara tradisional"},kunci:"B",pembahasan:`Kata <em>sesajen</em> berasal dari bahasa Jawa yang berarti persembahan berupa benda-benda atau makanan tertentu yang disiapkan untuk keperluan ritual atau upacara adat. Dalam teks, sesajen disebutkan bersama tumpeng sebagai bagian dari prosesi sedekah bumi, yang mengkonfirmasi maknanya sebagai persembahan dalam konteks ritual. Pilihan A tidak tepat karena sesajen bukan sekadar makanan untuk tamu. Pilihan C, D, dan E tidak sesuai dengan makna leksikal dan konteks penggunaan kata sesajen dalam teks.`,a:1.2,b:-1.5},
+  {id:2,teks_judul:"Kearifan Lokal dalam Tradisi Sedekah Bumi",teks:null,materi:"Pemahaman Inferensial – Gagasan utama/pendukung",kesulitan:"Sedang",soal:"Manakah gagasan pendukung yang memperkuat ide pokok bahwa tradisi sedekah bumi memiliki relevansi ekologis?",pilihan:{A:"Sedekah bumi melibatkan prosesi adat yang kaya simbolisme seperti tumpeng dan wayang kulit",B:"Generasi muda menganggap sedekah bumi sebagai tradisi yang kuno dan tidak relevan",C:"Masyarakat yang merawat tradisi ini memandang alam sebagai entitas hidup yang harus dijaga",D:"Tradisi sedekah bumi dilaksanakan sebagai ungkapan rasa syukur kepada Tuhan",E:"Sedekah bumi merupakan warisan budaya yang masih hidup di Jawa dan Sunda"},kunci:"C",pembahasan:`Gagasan pokok paragraf ketiga adalah relevansi ekologis sedekah bumi. Gagasan pendukungnya adalah bahwa masyarakat yang merawat tradisi ini memandang alam bukan sebagai objek eksploitasi melainkan sebagai entitas hidup yang harus dijaga—ini langsung mendukung argumen ekologis. Pilihan A dan D berkaitan dengan paragraf pertama. Pilihan B merupakan tantangan yang dibahas di paragraf kedua. Pilihan E adalah pernyataan pembuka yang bersifat umum.`,a:1.4,b:-0.5},
+  {id:3,teks_judul:"Kearifan Lokal dalam Tradisi Sedekah Bumi",teks:null,materi:"Pemahaman Inferensial – Hubungan antarparagraf",kesulitan:"Sedang",soal:"Hubungan makna antara paragraf kedua dan ketiga dalam teks tersebut adalah ....",pilihan:{A:"Paragraf ketiga menyajikan solusi atas masalah yang dipaparkan di paragraf kedua",B:"Paragraf ketiga mempertentangkan pandangan yang disampaikan di paragraf kedua",C:"Paragraf kedua dan ketiga sama-sama membahas tantangan pelestarian budaya",D:"Paragraf ketiga merupakan kronologi lanjutan dari peristiwa di paragraf kedua",E:"Paragraf kedua menyajikan data empiris yang dianalisis di paragraf ketiga"},kunci:"A",pembahasan:`Paragraf kedua mengangkat masalah: generasi muda menganggap sedekah bumi kuno dan tidak relevan. Paragraf ketiga kemudian menawarkan perspektif ekologis yang membuktikan relevansi tradisi tersebut—ini adalah solusi terhadap masalah kesalahpahaman di paragraf kedua. Pilihan B tidak tepat karena paragraf ketiga tidak mempertentangkan. Pilihan C tidak tepat karena paragraf ketiga tidak membahas tantangan. Pilihan D dan E tidak sesuai struktur teks.`,a:1.6,b:0.2},
+  {id:4,teks_judul:"Kearifan Lokal dalam Tradisi Sedekah Bumi",teks:null,materi:"Evaluasi dan Apresiasi – Kesesuaian penggunaan bahasa",kesulitan:"Sulit",soal:`"Oleh karena itu, pelestarian tradisi sedekah bumi seharusnya tidak dilihat semata-mata sebagai upaya konservasi budaya, tetapi juga sebagai langkah strategis dalam membangun kesadaran lingkungan di masyarakat."<br>Kalimat tersebut dapat menjadi kesimpulan yang sesuai teks argumentasi tersebut karena ....`,pilihan:{A:"Merangkum seluruh isi teks dengan menyebutkan semua prosesi sedekah bumi secara lengkap",B:"Menyimpulkan berbagai pandangan masyarakat terhadap tradisi sedekah bumi di Jawa",C:"Menyimpulkan argumen dari perspektif ekologi sekaligus memberikan rekomendasi sikap",D:"Menyangkal anggapan generasi muda bahwa sedekah bumi adalah kegiatan yang kuno",E:"Menggarisbawahi perbedaan antara konservasi budaya dan konservasi lingkungan hidup"},kunci:"C",pembahasan:`Kalimat tersebut berfungsi sebagai kesimpulan yang tepat karena merangkum argumen utama paragraf ketiga tentang relevansi ekologis, sekaligus memberikan rekomendasi sikap. Dalam teks argumentasi, kesimpulan yang baik merangkum argumen dan memberi arahan. Pilihan A tidak sesuai karena tidak menyebutkan prosesi secara lengkap. Pilihan B terlalu sempit. Pilihan D lebih ke arah sanggahan. Pilihan E mengandung dikotomi yang tidak ada.`,a:1.8,b:0.8},
+  {id:5,teks_judul:"Kearifan Lokal dalam Tradisi Sedekah Bumi",teks:null,materi:"Pemahaman Inferensial – Menyimpulkan nilai-nilai",kesulitan:"Sulit",soal:"Nilai yang paling dominan terkandung dalam teks tersebut adalah ....",pilihan:{A:"Nilai religius, karena sedekah bumi dilakukan sebagai ungkapan syukur kepada Tuhan",B:"Nilai ekologi, karena teks mendorong masyarakat untuk menjaga keseimbangan alam",C:"Nilai budaya yang berpadu dengan nilai ekologis dalam upaya pelestarian yang holistik",D:"Nilai ekonomi, karena tradisi bumi berkaitan dengan hasil bumi yang melimpah",E:"Nilai sejarah, karena teks membahas asal-usul dan perkembangan tradisi sedekah bumi"},kunci:"C",pembahasan:`Teks membahas dua dimensi nilai: budaya (warisan leluhur, ritual adat) dan ekologis (keseimbangan alam, kesadaran lingkungan). Argumen utama teks adalah bahwa kedua nilai tersebut saling berkaitan dan harus dijaga bersama. Pilihan A hanya menyentuh paragraf pertama. Pilihan B hanya mewakili paragraf ketiga. Pilihan D dan E tidak didukung isi teks secara keseluruhan.`,a:1.7,b:0.6},
+  {id:6,teks_judul:"Satu Pelita untuk Dua Jiwa",teks:`Malam itu hujan turun dengan enggan, setetes demi setetes, seolah langit pun ragu untuk menangis. Samir duduk di teras rumah yang mulai lapuk, menatap jalan desa yang basah dan sepi. Sudah dua minggu ia menganggur sejak pabrik tempatnya bekerja tutup tanpa pemberitahuan. Di tangannya, selembar surat dari perusahaan asuransi yang menolak klaim biaya pengobatan ibunya.<br><br>"Kamu kenapa di luar, Mir?" suara ibunya terdengar dari balik pintu. Suara yang sudah serak sejak dua bulan terakhir akibat penyakit yang belum juga sembuh.<br><br>Samir melipat surat itu dan memasukkannya ke saku. "Tidak apa-apa, Bu. Udara malam bagus."<br><br>Bohong kecil yang ia balut dengan senyum. Ia tidak ingin ibunya tahu. Tidak sekarang. Mungkin tidak selamanya.<br><br>Keesokan harinya, Samir berjalan tiga kilometer ke kota untuk melamar kerja di toko-toko yang berjajar di pinggir jalan. Satu demi satu pintu tertutup. Di toko kelontong milik Pak Hendra, nasib berpihak kepadanya—bukan karena lowongan kerja, melainkan karena Pak Hendra membutuhkan seseorang yang jujur untuk membantu mengurus gudang.<br><br>"Kamu kelihatan orang yang bisa dipercaya," kata Pak Hendra sambil memandang Samir dari atas ke bawah.<br><br>Samir tidak menjawab. Ia hanya mengangguk, menahan sesak di dadanya agar tidak terlihat.`,materi:"Pemahaman Tekstual – Identifikasi karakter tokoh",kesulitan:"Mudah",soal:"Berdasarkan teks tersebut, bagaimana sifat yang dimiliki oleh Samir?",pilihan:{A:"Pesimis dan mudah menyerah saat menghadapi kesulitan",B:"Penyayang dan rela berkorban demi kebahagiaan ibunya",C:"Ambisius dan tidak pernah puas dengan pencapaiannya",D:"Ceroboh dan kurang bertanggung jawab terhadap keluarga",E:"Keras kepala dan tidak mau menerima bantuan orang lain"},kunci:"B",pembahasan:`Teks menggambarkan Samir menyembunyikan surat penolakan asuransi dari ibunya ("Bohong kecil yang ia balut dengan senyum") dan berjalan tiga kilometer untuk mencari kerja demi pengobatan ibunya. Ini mencerminkan sifat penyayang dan rela berkorban. Pilihan A tidak tepat karena Samir terus berusaha. Pilihan C tidak ada buktinya. Pilihan D bertentangan dengan usaha Samir. Pilihan E tidak didukung teks.`,a:1.1,b:-1.2},
+  {id:7,teks_judul:"Satu Pelita untuk Dua Jiwa",teks:null,materi:"Pemahaman Inferensial – Menyimpulkan konflik antartokoh",kesulitan:"Sedang",soal:"Apa yang menyebabkan Samir berbohong kepada ibunya tentang alasan ia duduk di teras malam itu?",pilihan:{A:"Samir tidak ingin mengganggu istirahat ibunya yang sedang sakit",B:"Samir malu karena gagal mendapatkan pekerjaan baru",C:"Samir ingin melindungi ibunya dari beban masalah keuangan yang sedang dihadapi",D:"Samir sedang memikirkan rencana untuk meninggalkan desa",E:"Samir tidak percaya ibunya mampu memahami persoalan asuransi"},kunci:"C",pembahasan:`Teks menyebutkan Samir memegang surat penolakan klaim asuransi biaya pengobatan ibunya dan berbohong kecil. Narasi menjelaskan "Ia tidak ingin ibunya tahu. Tidak sekarang. Mungkin tidak selamanya." Ini menunjukkan motivasi utamanya adalah melindungi ibunya dari beban masalah keuangan. Pilihan A relevan tetapi teks lebih spesifik mengarah pada masalah keuangan. Pilihan B, D, dan E tidak didukung teks.`,a:1.5,b:-0.3},
+  {id:8,teks_judul:"Satu Pelita untuk Dua Jiwa",teks:null,materi:"Pemahaman Inferensial – Prediksi kelanjutan cerita",kesulitan:"Sulit",soal:"Bagaimana kisah lanjutan yang paling sesuai untuk cerita ini agar menggambarkan Samir menemukan harapan baru?",pilihan:{A:"Pak Hendra menolak lamaran Samir setelah mengetahui kondisi keluarganya yang kesulitan",B:"Samir memutuskan menjual rumah lapuk mereka dan pindah ke kota bersama ibunya",C:"Dengan gaji dari toko Pak Hendra, Samir mulai bisa membayar biaya pengobatan ibunya secara cicilan",D:"Ibunya menemukan surat asuransi tersebut dan memarahi Samir karena tidak jujur",E:"Samir mengajukan banding atas penolakan klaim asuransi dan memenangkannya di pengadilan"},kunci:"C",pembahasan:`Cerita diakhiri dengan Samir mendapatkan pekerjaan di toko Pak Hendra. Kelanjutan yang paling logis dan sesuai nada cerita adalah pekerjaan tersebut memberi Samir kemampuan membayar pengobatan ibunya. Pilihan A bertentangan dengan penggalan akhir. Pilihan B terlalu drastis. Pilihan D mengalihkan fokus ke konflik baru. Pilihan E terlalu jauh dari konteks cerita.`,a:1.6,b:0.4},
+  {id:9,teks_judul:"Satu Pelita untuk Dua Jiwa",teks:null,materi:"Evaluasi dan Apresiasi – Tanggapan emosional terhadap latar suasana",kesulitan:"Sangat Sulit",soal:"Bagaimana reaksi emosional yang paling tepat dari pembaca terhadap penggambaran suasana malam di awal cerita?",pilihan:{A:"Merasa gembira karena hujan menandakan awal yang baru bagi Samir",B:"Merasa gelisah karena suasana malam mencerminkan beratnya beban yang dipikul tokoh",C:"Merasa takut karena kegelapan malam menandakan bahaya yang akan datang",D:"Merasa bosan karena deskripsi hujan terlalu panjang dan tidak relevan",E:"Merasa penasaran karena suasana malam menjadi teka-teki yang belum terpecahkan"},kunci:"B",pembahasan:`Penggambaran hujan "turun dengan enggan, setetes demi setetes, seolah langit pun ragu untuk menangis" adalah personifikasi yang menciptakan suasana murung. Diksi "ragu," "menangis," dan setting "malam" dipadukan dengan kondisi Samir yang menganggur dan memegang surat penolakan membangun suasana kegelisahan yang mendalam. Pilihan A keliru karena tidak ada optimisme. Pilihan C berlebihan. Pilihan D tidak tepat karena deskripsi sangat fungsional. Pilihan E hanya sebagian benar.`,a:1.9,b:1.2},
+  {id:10,teks_judul:"Transformasi Digital Pertanian Indonesia",teks:`<strong>TRANSFORMASI DIGITAL PERTANIAN INDONESIA</strong> — Sumber: Kementerian Pertanian RI, 2024<br><br><strong>Penggunaan Teknologi oleh Petani Indonesia (2023):</strong><br>• Aplikasi pertanian berbasis smartphone: 34%<br>• Sensor tanah dan cuaca IoT: 12%<br>• Drone untuk pemantauan lahan: 8%<br>• Traktor/mesin otomatis: 21%<br>• Tidak menggunakan teknologi digital: 25%<br><br><strong>Kendala Adopsi Teknologi:</strong><br>1. Keterbatasan akses internet di pedesaan: 68%<br>2. Biaya perangkat yang mahal: 57%<br>3. Kurangnya pemahaman teknis: 43%<br>4. Tidak ada dukungan penyuluh: 31%<br><br>Target pemerintah: 70% petani menggunakan teknologi digital pada 2030.`,materi:"Pemahaman Tekstual – Urutan informasi/kronologi",kesulitan:"Mudah",soal:"Manakah urutan kendala adopsi teknologi dari yang paling banyak hingga paling sedikit dialami petani berdasarkan infografis tersebut?",pilihan:{A:"Biaya mahal → Akses internet → Pemahaman teknis → Dukungan penyuluh",B:"Akses internet → Biaya mahal → Pemahaman teknis → Dukungan penyuluh",C:"Pemahaman teknis → Akses internet → Biaya mahal → Dukungan penyuluh",D:"Akses internet → Pemahaman teknis → Biaya mahal → Dukungan penyuluh",E:"Dukungan penyuluh → Pemahaman teknis → Biaya mahal → Akses internet"},kunci:"B",pembahasan:`Berdasarkan data: (1) Akses internet 68%, (2) Biaya mahal 57%, (3) Pemahaman teknis 43%, (4) Dukungan penyuluh 31%. Urutan dari terbesar ke terkecil: Akses internet → Biaya mahal → Pemahaman teknis → Dukungan penyuluh.`,a:1.0,b:-1.8},
+  {id:11,teks_judul:"Transformasi Digital Pertanian Indonesia",teks:null,materi:"Pemahaman Inferensial – Menyimpulkan pesan/nilai",kesulitan:"Sedang",soal:"Apa pesan utama yang dapat disimpulkan dari data infografis tersebut?",pilihan:{A:"Teknologi drone adalah solusi paling efektif untuk meningkatkan produktivitas pertanian",B:"Mayoritas petani Indonesia telah memanfaatkan teknologi digital dengan baik",C:"Transformasi digital pertanian terhambat oleh ketimpangan infrastruktur dan ekonomi",D:"Target pemerintah tahun 2030 sudah pasti akan tercapai berkat program digitalisasi",E:"Petani yang tidak menggunakan teknologi akan kalah bersaing dengan petani modern"},kunci:"C",pembahasan:`Data menunjukkan kendala terbesar adalah akses internet (68%) dan biaya mahal (57%)—mencerminkan ketimpangan infrastruktur dan ekonomi. Pilihan A terlalu spesifik (drone hanya 8%). Pilihan B keliru karena 25% tidak menggunakan teknologi sama sekali. Pilihan D adalah asumsi tidak didukung data. Pilihan E generalisasi yang tidak tersirat.`,a:1.4,b:0.0},
+  {id:12,teks_judul:"Transformasi Digital Pertanian Indonesia",teks:null,materi:"Evaluasi dan Apresiasi – Kesesuaian data visual dengan opini",kesulitan:"Sulit",soal:`Pernyataan: "Pemerintah perlu memprioritaskan pembangunan infrastruktur internet di pedesaan untuk mempercepat transformasi digital pertanian."<br><br>Manakah kombinasi nilai kebenaran pernyataan berikut berdasarkan data infografis?<br>(1) 68% petani menyebut keterbatasan akses internet sebagai kendala utama.<br>(2) Rendahnya penggunaan drone (8%) membuktikan petani lebih menyukai teknologi sederhana.<br>(3) Target 70% petani digital pada 2030 sulit dicapai tanpa perbaikan infrastruktur internet.`,pilihan:{A:"(1) Benar – (2) Salah – (3) Benar",B:"(1) Benar – (2) Benar – (3) Salah",C:"(1) Salah – (2) Benar – (3) Benar",D:"(1) Benar – (2) Salah – (3) Salah",E:"(1) Salah – (2) Salah – (3) Benar"},kunci:"A",pembahasan:`(1) Benar: 68% adalah data eksplisit yang paling langsung mendukung urgensi internet. (2) Salah: Persentase kecil drone tidak membuktikan preferensi—bisa karena harga mahal atau keterbatasan pengetahuan. (3) Benar: Jika kendala terbesar adalah akses internet, maka logis bahwa target 70% sulit dicapai tanpa perbaikan infrastruktur.`,a:1.7,b:0.5},
+  {id:13,teks_judul:"Polemik Ojek Online dan Nasib Ojek Konvensional",teks:`Kemunculan platform transportasi berbasis aplikasi telah mengubah lanskap industri transportasi informal di Indonesia secara fundamental. Ojek online yang diluncurkan sekitar satu dekade lalu kini menjadi tulang punggung mobilitas urban bagi jutaan orang. Kemudahan pemesanan, transparansi harga, dan jaminan keamanan menjadi daya tarik utama yang sulit ditandingi oleh sistem konvensional.<br><br>Di sisi lain, komunitas ojek konvensional—yang selama puluhan tahun menggantungkan hidup pada model operasional berbasis pangkalan—menghadapi krisis eksistensial. Pendapatan mereka merosot tajam, bahkan di beberapa wilayah nyaris habis tersapu arus digitalisasi. Upaya negosiasi dan aksi protes yang mereka lakukan kerap berakhir tanpa solusi konkret, sementara gap kompetensi digital membuat sebagian besar dari mereka tidak mampu bergabung dengan platform ojek online.<br><br>Pertanyaannya bukan lagi apakah digitalisasi layak diterapkan, melainkan bagaimana negara hadir untuk memastikan transisi ini berlangsung adil. Kebijakan yang mendukung inklusi pengemudi konvensional—baik melalui pelatihan digital, subsidi akses gawai, maupun skema kemitraan—menjadi kebutuhan yang tidak bisa ditawar. Tanpa intervensi yang tepat, disrupsi teknologi berisiko melebarkan jurang ketimpangan sosial yang sudah ada.`,materi:"Pemahaman Inferensial – Hubungan antarparagraf (sebab-akibat)",kesulitan:"Sedang",soal:"Bagaimana hubungan makna antara paragraf pertama dan kedua dalam teks tersebut?",pilihan:{A:"Paragraf pertama memaparkan solusi dan paragraf kedua menguraikan dampak positifnya",B:"Paragraf pertama menggambarkan kemajuan ojek online dan paragraf kedua memaparkan dampak negatifnya bagi ojek konvensional",C:"Paragraf pertama dan kedua sama-sama membahas kelebihan sistem transportasi berbasis aplikasi",D:"Paragraf kedua merupakan kronologi sejarah yang mendahului peristiwa di paragraf pertama",E:"Paragraf pertama berisi data statistik dan paragraf kedua berisi analisis terhadap data tersebut"},kunci:"B",pembahasan:`Paragraf pertama menguraikan keunggulan ojek online. Paragraf kedua menunjukkan dampak negatifnya terhadap ojek konvensional—dua sisi dari satu fenomena. Pilihan A keliru karena paragraf pertama bukan solusi. Pilihan C keliru karena paragraf dua tidak membahas kelebihan ojek online. Pilihan D tidak sesuai urutan logis. Pilihan E tidak tepat karena paragraf pertama bukan kumpulan data statistik.`,a:1.5,b:-0.1},
+  {id:14,teks_judul:"Polemik Ojek Online dan Nasib Ojek Konvensional",teks:null,materi:"Evaluasi dan Apresiasi – Kata konotatif/idiom",kesulitan:"Sulit",soal:"Mengapa penulis memilih frasa <em>'tersapu arus digitalisasi'</em> untuk menggambarkan kondisi ojek konvensional?",pilihan:{A:"Menunjukkan bahwa digitalisasi adalah bencana alam yang tidak dapat dihindari",B:"Memperkuat makna betapa cepatnya dampak digitalisasi mengikis penghidupan ojek konvensional",C:"Memberikan kesan bahwa ojek konvensional secara aktif menolak perkembangan teknologi",D:"Mengindikasikan bahwa frasa tersebut berasal dari istilah teknis dalam sosiologi digital",E:"Menyiratkan bahwa sebagian ojek konvensional sudah beradaptasi dengan sistem digital"},kunci:"B",pembahasan:`Frasa "tersapu arus digitalisasi" menggunakan majas metafora: "tersapu" menggambarkan sesuatu yang hilang tanpa bisa dipertahankan (seperti ombak menyapu pantai), "arus" memperkuat kekuatan yang deras dan tak terbendung. Pilihan ini memperkuat intensitas dampak yang cepat dan merusak. Pilihan A berlebihan. Pilihan C bertentangan. Pilihan D tidak berdasar. Pilihan E berlawanan dengan makna "tersapu."`,a:1.8,b:0.9},
+  {id:15,teks_judul:"Polemik Ojek Online dan Nasib Ojek Konvensional",teks:null,materi:"Pemahaman Inferensial – Menyusun kalimat penutup teks",kesulitan:"Sangat Sulit",soal:"Manakah pernyataan yang paling tepat menjadi kelanjutan atau penutup teks tersebut?",pilihan:{A:"Oleh karena itu, ojek online harus dilarang beroperasi di kawasan ojek konvensional",B:"Dengan demikian, digitalisasi transportasi terbukti membawa lebih banyak kerugian daripada manfaat",C:"Pada akhirnya, keberhasilan transformasi digital transportasi akan diukur bukan hanya dari efisiensinya, tetapi dari seberapa inklusif proses tersebut bagi semua pelaku yang terdampak",D:"Sebaliknya, ojek konvensional harus segera beralih ke platform digital agar dapat bersaing secara adil",E:"Pemerintah sebaiknya menyerahkan penyelesaian masalah ini sepenuhnya kepada mekanisme pasar"},kunci:"C",pembahasan:`Teks berargumen bahwa negara harus memastikan transisi berlangsung adil dengan kebijakan inklusif. Kalimat penutup yang paling sesuai merangkum argumen tersebut dengan penegasan tentang inklusivitas sebagai standar keberhasilan. Pilihan A terlalu ekstrem. Pilihan B adalah distorsi. Pilihan D mengabaikan hambatan nyata. Pilihan E bertentangan dengan argumen perlunya intervensi negara.`,a:1.9,b:1.1},
+  {id:16,teks_judul:"Warisan Batik Nusantara: Antara Identitas dan Industri",teks:`Batik telah menjadi salah satu identitas budaya Indonesia yang paling dikenal dunia. Sejak UNESCO mengakui batik sebagai Warisan Budaya Takbenda pada 2009, minat global terhadap batik meningkat pesat. Namun, pengakuan internasional ini membawa dilema tersendiri: batik kini berada di persimpangan antara pelestarian tradisi dan kepentingan industri yang terus berkembang.<br><br>Produksi batik cap dan batik printing telah mendominasi pasar karena harganya yang terjangkau dan proses produksinya yang cepat. Kondisi ini memojokkan pengrajin batik tulis yang membutuhkan waktu berminggu-minggu hingga berbulan-bulan untuk menyelesaikan selembar kain dengan detail yang rumit. Harga batik tulis yang tinggi—kadang mencapai jutaan rupiah per lembar—dianggap terlalu mahal oleh sebagian besar konsumen yang tidak memahami proses di baliknya.<br><br>Di sinilah peran edukasi menjadi krusial. Masyarakat perlu memahami bahwa batik tulis bukan sekadar kain, melainkan ekspresi seni, budaya, dan identitas yang diwariskan turun-temurun. Tanpa apresiasi yang memadai, pengrajin batik tulis akan semakin kehilangan ruang, dan pada akhirnya kekayaan pola-pola lokal yang tersimpan dalam setiap lembar batik tulis terancam punah bersama para empu yang menciptakannya.`,materi:"Pemahaman Tekstual – Makna kata serapan",kesulitan:"Mudah",soal:"Apa makna kata <em>empu</em> dalam konteks teks tersebut?",pilihan:{A:"Pengusaha yang memproduksi batik dalam skala besar untuk pasar ekspor",B:"Ahli atau pakar yang menguasai pembuatan batik tulis secara mendalam",C:"Pejabat pemerintah yang bertanggung jawab atas kebijakan pelestarian batik",D:"Kolektor batik yang menyimpan karya-karya langka dari berbagai daerah",E:"Kurator museum yang mendokumentasikan motif batik tradisional Nusantara"},kunci:"B",pembahasan:`Kata <em>empu</em> berasal dari tradisi Jawa, merujuk pada seorang ahli atau maestro dalam bidang keahlian tertentu. Dalam konteks teks, empu adalah pengrajin batik tulis yang sangat ahli dan menguasai seni batik secara mendalam—orang yang menyimpan pengetahuan pola-pola lokal. Diperkuat kalimat "kekayaan pola-pola lokal...terancam punah bersama para empu yang menciptakannya." Pilihan lainnya tidak sesuai makna kata empu.`,a:1.1,b:-1.0},
+  {id:17,teks_judul:"Warisan Batik Nusantara: Antara Identitas dan Industri",teks:null,materi:"Pemahaman Inferensial – Gagasan pendukung",kesulitan:"Sedang",soal:"Manakah gagasan pendukung yang memperkuat ide pokok bahwa batik tulis terancam keberlangsungannya?",pilihan:{A:"UNESCO mengakui batik sebagai Warisan Budaya Takbenda pada tahun 2009",B:"Batik cap dan batik printing mendominasi pasar karena harganya terjangkau dan produksinya cepat",C:"Minat global terhadap batik meningkat pesat setelah pengakuan internasional",D:"Batik telah menjadi identitas budaya Indonesia yang paling dikenal dunia",E:"Masyarakat perlu memahami bahwa batik bukan sekadar kain melainkan ekspresi budaya"},kunci:"B",pembahasan:`Ide pokok adalah ancaman terhadap batik tulis. Gagasan yang paling langsung mendukung ini adalah dominasi batik cap/printing yang memojokkan pengrajin batik tulis (paragraf dua)—penyebab langsung ancaman tersebut. Pilihan A (UNESCO) adalah hal positif bagi batik secara umum. Pilihan C (minat global) juga positif. Pilihan D adalah pembuka yang umum. Pilihan E adalah solusi yang ditawarkan.`,a:1.3,b:-0.4},
+  {id:18,teks_judul:"Warisan Batik Nusantara: Antara Identitas dan Industri",teks:null,materi:"Pemahaman Inferensial – Menyimpulkan konflik utama",kesulitan:"Sedang",soal:"Kondisi yang paling tepat menggambarkan konflik utama dalam teks tersebut adalah ....",pilihan:{A:"Perbedaan pendapat antara pemerintah Indonesia dan UNESCO tentang status batik",B:"Ketegangan antara kepentingan pelestarian batik tulis dan tekanan ekonomi dari industri batik massal",C:"Persaingan harga antara produsen batik Indonesia dengan batik impor dari negara lain",D:"Ketidakmampuan pengrajin batik tulis untuk memenuhi permintaan pasar global yang meningkat",E:"Konflik antargenerasi dalam keluarga pengrajin batik tentang cara memasarkan produk"},kunci:"B",pembahasan:`Teks secara eksplisit menggunakan kata "dilema" untuk menggambarkan konflik antara pelestarian tradisi dan kepentingan industri. Paragraf dua mempertegas: batik cap/printing murah vs. batik tulis mahal dan memerlukan waktu lama. Konflik utama adalah tarik-menarik antara pelestarian dan industri massal. Pilihan lain tidak didukung isi teks.`,a:1.4,b:-0.2},
+  {id:19,teks_judul:"Warisan Batik Nusantara: Antara Identitas dan Industri",teks:null,materi:"Evaluasi dan Apresiasi – Kesesuaian kalimat kesimpulan",kesulitan:"Sangat Sulit",soal:`"Masyarakat perlu memahami bahwa batik tulis bukan sekadar kain, melainkan ekspresi seni, budaya, dan identitas yang diwariskan turun-temurun."<br><br>Kalimat tersebut dapat menjadi kesimpulan yang sesuai untuk teks argumentasi tersebut karena ....`,pilihan:{A:"Merangkum data statistik tentang penurunan jumlah pengrajin batik tulis",B:"Menyimpulkan konflik antara pengrajin batik tulis dengan produsen batik printing",C:"Memperkuat argumen bahwa edukasi masyarakat adalah solusi atas ancaman terhadap batik tulis",D:"Menggarisbawahi perbedaan teknis antara batik tulis, batik cap, dan batik printing",E:"Menyimpulkan bahwa harga batik tulis harus diturunkan agar dapat bersaing di pasar"},kunci:"C",pembahasan:`Paragraf ketiga berargumen tentang pentingnya edukasi masyarakat agar mengapresiasi batik tulis. Kalimat yang dikutip menjadi bagian dari argumen edukasi—menjelaskan apa yang perlu dipahami masyarakat. Kalimat ini memperkuat bahwa edukasi adalah solusi yang diperlukan. Pilihan A tidak ada data statistik. Pilihan B hanya mewakili paragraf dua. Pilihan D bersifat teknis dan tidak relevan. Pilihan E berlawanan dengan argumen teks.`,a:1.8,b:1.0},
+  {id:20,teks_judul:"Fenomena Childfree di Indonesia: Pilihan atau Tren?",teks:`Jakarta, Kamis, 12 Juni 2025 — Fenomena pasangan yang memilih untuk tidak memiliki anak (childfree) semakin menjadi perbincangan di Indonesia. Survei yang dilakukan oleh Lembaga Demografi Universitas Indonesia (LDUI) pada Maret 2025 menunjukkan bahwa 14,2% responden berusia 25–35 tahun menyatakan berniat untuk tidak memiliki anak. Angka ini meningkat signifikan dibandingkan survei serupa pada 2020 yang mencatat hanya 7,8%.<br><br>Fenomena ini dipicu oleh berbagai faktor, di antaranya meningkatnya kesadaran tentang biaya pengasuhan anak yang tinggi, perubahan prioritas karier terutama di kalangan perempuan, serta kekhawatiran akan kondisi lingkungan dan sosial di masa depan. Dr. Anita Kusuma dari Departemen Sosiologi UI menyatakan, "Pilihan childfree bukanlah hal baru; yang baru adalah keterbukaan masyarakat untuk membicarakannya."<br><br>Respons masyarakat terhadap fenomena ini terbagi. Sebagian kalangan menghormatinya sebagai hak pribadi, sementara pihak lain—terutama dari perspektif agama dan adat—memandangnya sebagai penyimpangan dari nilai-nilai keluarga. Pemerintah melalui BKKBN menyatakan bahwa tren ini perlu dicermati dalam konteks proyeksi demografi jangka panjang, terutama terkait angka ketergantungan penduduk pada 2045.`,materi:"Pemahaman Tekstual – Fenomena berdasarkan kosakata teks nonfiksi",kesulitan:"Mudah",soal:`Fenomena yang paling tepat menggambarkan "<em>angka ketergantungan penduduk</em>" berdasarkan konteks teks di atas adalah ....`,pilihan:{A:"Tingkat ketergantungan ekonomi masyarakat desa terhadap bantuan pemerintah",B:"Rasio jumlah penduduk nonproduktif yang bergantung pada penduduk usia produktif",C:"Persentase penduduk yang bergantung pada teknologi digital dalam kehidupan sehari-hari",D:"Tingkat ketergantungan negara terhadap tenaga kerja asing di sektor industri",E:"Proporsi penduduk urban yang bergantung pada sektor informal untuk mencari nafkah"},kunci:"B",pembahasan:`Dalam demografi, "angka ketergantungan penduduk" (dependency ratio) merujuk pada rasio penduduk tidak produktif (anak-anak dan lansia) terhadap penduduk usia produktif. Konteks kalimat—fenomena childfree dan proyeksi demografi 2045—memperkuat bahwa berkurangnya generasi muda akan berdampak pada rasio ketergantungan. Pilihan A, C, D, dan E menggunakan kata "ketergantungan" dalam konteks yang berbeda dan tidak relevan.`,a:1.3,b:-0.7},
+  {id:21,teks_judul:"Fenomena Childfree di Indonesia: Pilihan atau Tren?",teks:null,materi:"Pemahaman Inferensial – Menyimpulkan konflik utama",kesulitan:"Sedang",soal:"Peristiwa yang paling tepat menggambarkan tantangan atau konflik dalam teks berita tersebut adalah ....",pilihan:{A:"Pemerintah mengeluarkan larangan bagi pasangan muda untuk memilih gaya hidup childfree",B:"Lembaga agama dan adat berkoalisi menentang hasil survei LDUI tentang childfree",C:"Terjadinya perpecahan pandangan sosial akibat perbedaan respons terhadap pilihan childfree",D:"Angka kelahiran Indonesia turun drastis hingga di bawah angka pertumbuhan populasi minimal",E:"Konflik antara LDUI dan BKKBN tentang metode pengumpulan data survei kependudukan"},kunci:"C",pembahasan:`Paragraf ketiga secara eksplisit menyebutkan respons masyarakat "terbagi"—sebagian menghormati sebagai hak pribadi, sebagian memandangnya sebagai penyimpangan. Ini adalah perpecahan pandangan yang menjadi tantangan utama. Pilihan A tidak ada dalam teks (tidak disebutkan larangan). Pilihan B adalah detail yang tidak ada. Pilihan D terlalu ekstrem. Pilihan E adalah konflik yang tidak disebutkan.`,a:1.5,b:0.1},
+  {id:22,teks_judul:"Fenomena Childfree di Indonesia: Pilihan atau Tren?",teks:null,materi:"Pemahaman Inferensial – Menyusun kalimat penutup teks berita",kesulitan:"Sulit",soal:"Manakah pernyataan yang paling tepat menjadi kelanjutan penutup teks berita tersebut?",pilihan:{A:"Seiring meningkatnya tren childfree, pemerintah berencana memberikan insentif finansial bagi pasangan yang memiliki tiga anak atau lebih",B:"Terlepas dari pro dan kontra, fenomena ini menuntut respons kebijakan yang berbasis data dan menghormati hak asasi individu sekaligus mempertimbangkan dampak demografi jangka panjang",C:"Oleh karena itu, semua lembaga agama di Indonesia sepakat bahwa childfree adalah pilihan yang tidak boleh didukung negara",D:"Dalam waktu dekat, LDUI akan memperluas survei ini ke seluruh provinsi untuk mendapatkan data yang lebih representatif",E:"Dengan demikian, childfree terbukti menjadi pilihan yang semakin populer dan akan terus meningkat di dekade mendatang"},kunci:"B",pembahasan:`Teks berita ini menyajikan fenomena childfree dari berbagai sudut pandang tanpa memihak. Kalimat penutup yang paling sesuai merangkum kompleksitas isu ini dengan menekankan perlunya respons berimbang. Pilihan A terlalu spesifik dan belum ada dalam teks. Pilihan C bersifat memihak dan bertentangan dengan nada netral teks berita. Pilihan D memperkenalkan informasi baru yang tidak relevan. Pilihan E terlalu menyimpulkan dan prediktif tanpa dasar.`,a:1.7,b:0.7},
+  {id:23,teks_judul:"Akar yang Tinggal",teks:`Nenek Juminah memandang ladangnya dari balik jendela yang setengah terbuka. Tanah itu sudah tiga generasi merawat keluarganya—dari lelaki-lelaki yang menggali sumur dengan tangan kosong, hingga anak-cucunya yang kini sudah punya akun media sosial. Tapi kemarin, dari amplop bersegel merah yang diantar petugas desa, ia membaca angka ganti rugi yang tertera di atas kertas bermeterai itu.<br><br>Angka yang membuat dadanya sesak.<br><br>"Tanah kita mau dibeli pemerintah, Nek," kata cucunya, Rendi, dengan nada datar yang terasa menyakitkan karena terlalu biasa.<br><br>Nenek Juminah tidak menjawab. Ia berjalan ke sudut rumah, mengambil cangkul yang pegangan kayunya sudah cokelat mengkilat karena tangan-tangan yang pernah memegangnya. Pagi itu ia mencangkul seperti biasa—tidak terburu-buru, tidak juga marah. Hanya sebuah kebiasaan yang ingin ia rawat selagi masih bisa.<br><br>Sore harinya, Rendi mendapati neneknya duduk di tepi ladang, memegang segenggam tanah merah.<br><br>"Kamu tahu, Ren," kata Nenek Juminah pelan, "tanah ini tidak pernah ingkar janji. Setiap yang kita tanam, ia kembalikan."`,materi:"Pemahaman Tekstual – Identifikasi latar tempat",kesulitan:"Mudah",soal:"Latar tempat yang paling dominan tergambar dalam cerita tersebut adalah ....",pilihan:{A:"Kantor desa tempat petugas mengantarkan surat ganti rugi",B:"Ladang milik Nenek Juminah yang telah diwariskan turun-temurun",C:"Pasar tradisional tempat Nenek Juminah menjual hasil panennya",D:"Kota besar tempat cucu-cucu Nenek Juminah mengadu nasib",E:"Rumah sakit tempat Nenek Juminah dirawat setelah kelelahan mencangkul"},kunci:"B",pembahasan:`Seluruh narasi berpusat pada ladang milik Nenek Juminah—dari awal ia memandang ladangnya, lalu mencangkul, hingga sore duduk di tepinya memegang tanah merah. Ladang bukan hanya latar fisik tetapi juga simbol emosional yang menjadi pusat konflik dan tema cerita. Pilihan A, C, D, E tidak disebutkan sebagai latar yang dominan.`,a:1.0,b:-1.6},
+  {id:24,teks_judul:"Akar yang Tinggal",teks:null,materi:"Pemahaman Inferensial – Penyebab konflik",kesulitan:"Sedang",soal:"Apa yang menyebabkan konflik dalam kutipan cerpen tersebut?",pilihan:{A:"Rendi memaksa neneknya segera menerima uang ganti rugi dari pemerintah",B:"Nenek Juminah kehilangan cangkulnya dan tidak bisa lagi mengerjakan ladang",C:"Rencana pemerintah untuk mengambil alih tanah ladang dengan ganti rugi yang dianggap tidak setimpal",D:"Pertengkaran antara Nenek Juminah dan cucunya tentang penggunaan media sosial",E:"Kekeringan panjang yang membuat ladang Nenek Juminah tidak produktif lagi"},kunci:"C",pembahasan:`Konflik dipicu oleh amplop bersegel merah berisi surat ganti rugi dari pemerintah untuk tanah ladang Nenek Juminah. Reaksi Nenek Juminah—dadanya sesak, tidak menjawab cucunya, mencangkul sebagai perlawanan pasif—semua akibat ancaman kehilangan tanah tersebut. Pilihan A tidak tepat—Rendi hanya memberitahu, tidak memaksa. Pilihan B, D, E tidak ada dalam teks.`,a:1.4,b:-0.3},
+  {id:25,teks_judul:"Akar yang Tinggal",teks:null,materi:"Pemahaman Inferensial – Prediksi kelanjutan cerita",kesulitan:"Sulit",soal:"Apa yang kemungkinan besar akan dilakukan Nenek Juminah setelah peristiwa dalam kutipan cerpen tersebut?",pilihan:{A:"Segera menandatangani surat ganti rugi dan pindah ke kota bersama Rendi",B:"Menolak menerima ganti rugi dan terus mencangkul ladangnya hingga akhir hayat",C:"Berdiskusi dengan Rendi dan keluarga tentang cara mempertahankan atau menerima keputusan dengan bermartabat",D:"Melapor kepada media massa tentang ketidakadilan ganti rugi yang diterimanya",E:"Menjual tanah tersebut secara diam-diam kepada pihak swasta agar mendapat harga lebih baik"},kunci:"C",pembahasan:`Nenek Juminah digambarkan sebagai tokoh bijak dan tidak impulsif—tidak marah, tidak menolak terang-terangan, tetapi juga tidak langsung menerima. Kalimatnya ("tanah ini tidak pernah ingkar janji") menunjukkan ikatan emosional yang dalam. Kelanjutan yang paling sesuai karakter adalah ia akan menghadapi situasi ini secara bijaksana—berdiskusi dengan keluarga sebelum mengambil keputusan. Pilihan A terlalu mudah menyerah. Pilihan B terlalu keras. Pilihan D dan E tidak sesuai karakter tokoh.`,a:1.6,b:0.3},
+  {id:26,teks_judul:"Fenomena Phubbing dalam Keluarga Modern",teks:`Phubbing—tindakan mengabaikan orang di sekitar kita dengan asyik bermain ponsel—kini menjadi fenomena yang mengkhawatirkan dalam dinamika keluarga Indonesia. Riset yang diterbitkan dalam Jurnal Psikologi Keluarga (2024) menemukan bahwa 62% orang tua mengaku sering mengabaikan anak-anaknya karena fokus pada ponsel, sementara 71% anak usia sekolah merasa tidak diperhatikan oleh orang tuanya akibat perilaku tersebut.<br><br>Yang lebih memprihatinkan adalah fakta bahwa phubbing tidak hanya berdampak pada kualitas komunikasi verbal, tetapi juga merusak ikatan emosional antara anggota keluarga. Anak-anak yang tumbuh dalam lingkungan dengan tingkat phubbing tinggi cenderung menunjukkan peningkatan gejala kecemasan, rendahnya rasa percaya diri, dan kesulitan membangun hubungan interpersonal yang sehat.`,materi:"Pemahaman Inferensial – Hubungan antarparagraf",kesulitan:"Sedang",soal:"Bagaimana hubungan makna antara paragraf pertama dan kedua dalam teks tersebut?",pilihan:{A:"Paragraf kedua menyajikan solusi untuk masalah phubbing yang dipaparkan di paragraf pertama",B:"Paragraf pertama mendeskripsikan fenomena phubbing dan paragraf kedua menjelaskan dampak yang lebih dalam",C:"Paragraf kedua mempertentangkan data survei yang disajikan di paragraf pertama",D:"Paragraf pertama dan kedua sama-sama menyajikan data statistik tentang phubbing",E:"Paragraf kedua merupakan penjelasan kronologis dari fenomena yang dimulai di paragraf pertama"},kunci:"B",pembahasan:`Paragraf pertama mendeskripsikan fenomena phubbing dan prevalensinya. Paragraf kedua memperdalam pembahasan dengan dampak psikologis dan emosional yang lebih serius—bukan hanya komunikasi verbal tetapi ikatan emosional dan kesehatan mental anak. Hubungannya adalah deskripsi-elaborasi dampak yang semakin mendalam. Pilihan A tidak tepat—paragraf dua tidak menyajikan solusi. Pilihan C keliru—tidak ada pertentangan. Pilihan D tidak tepat karena paragraf dua tidak seluruhnya statistik. Pilihan E tidak tepat—bukan kronologi.`,a:1.5,b:0.0},
+  {id:27,teks_judul:"Fenomena Phubbing dalam Keluarga Modern",teks:null,materi:"Evaluasi dan Apresiasi – Relevansi teks dengan kehidupan sehari-hari",kesulitan:"Sulit",soal:"Manakah relevansi paling kuat antara isi teks dengan realitas kehidupan sehari-hari terkait teknologi dan hubungan interpersonal?",pilihan:{A:"Kritik terhadap perusahaan teknologi yang menciptakan aplikasi yang menyebabkan kecanduan ponsel",B:"Tuntutan agar pemerintah melarang penggunaan ponsel di rumah tangga selama jam makan",C:"Sindiran terhadap ironi zaman digital: teknologi yang seharusnya mendekatkan justru menjauhkan orang-orang yang secara fisik berdekatan",D:"Peringatan bahwa anak-anak generasi digital tidak akan mampu membangun hubungan sosial yang bermakna",E:"Seruan agar penelitian lebih lanjut dilakukan untuk membuktikan kausalitas antara phubbing dan gangguan kecemasan"},kunci:"C",pembahasan:`Inti ironi yang digambarkan teks adalah paradoks teknologi komunikasi: ponsel yang dibuat untuk menghubungkan orang justru menjauhkan yang berada di ruangan yang sama. Ini relevan dengan realitas yang banyak dialami—makan malam bersama namun masing-masing menatap layar ponsel. Pilihan A terlalu spesifik ke kebijakan perusahaan. Pilihan B merupakan respons kebijakan yang tidak dibahas teks. Pilihan D terlalu pesimistis. Pilihan E bersifat akademis dan tidak menyentuh relevansi kehidupan sehari-hari.`,a:1.8,b:0.8},
+  {id:28,teks_judul:"Majas dan Gaya Bahasa dalam Puisi Kontemporer",teks:`Perhatikan kutipan puisi berikut:<br><br><em>Kota ini menelanku pelan-pelan,<br>seperti pasir yang merayap masuk ke dalam sepatu—<br>tidak terasa di langkah pertama,<br>tapi menyakitkan setelah ribuan langkah kemudian.</em>`,materi:"Evaluasi dan Apresiasi – Tanggapan emosional terhadap unsur puisi",kesulitan:"Sulit",soal:"Majas yang dominan digunakan dalam kutipan puisi tersebut dan efek emosionalnya adalah ....",pilihan:{A:"Hiperbola; menciptakan kesan dramatis tentang kehidupan kota yang penuh tekanan",B:"Simile; menciptakan gambaran konkret tentang proses adaptasi yang lambat dan menyakitkan",C:"Metafora; menggambarkan kota sebagai makhluk hidup yang aktif memangsa penghuninya",D:"Personifikasi; menghidupkan gambaran kota sebagai entitas yang bergerak sendiri",E:"Ironi; menunjukkan kontradiksi antara harapan dan realita kehidupan perkotaan"},kunci:"B",pembahasan:`Kutipan menggunakan kata "seperti" sebagai penanda simile (perbandingan eksplisit): kota dibandingkan dengan pasir yang merayap ke dalam sepatu. Efek emosionalnya adalah gambaran konkret tentang bagaimana tekanan kota tidak terasa di awal tetapi menumpuk dan menyakitkan seiring waktu. Pilihan A salah identifikasi majas. Pilihan C keliru karena metafora tidak menggunakan kata perbandingan eksplisit. Pilihan D ada unsur personifikasi tetapi majas yang dominan adalah simile. Pilihan E tidak tepat—tidak ada unsur ironi.`,a:1.9,b:1.0},
+  {id:29,teks_judul:"Surat Lamaran Kerja dan Tata Bahasa Formal",teks:`Perhatikan paragraf pembuka surat lamaran kerja berikut:<br><br><em>"Sehubungan dengan iklan lowongan pekerjaan yang Bapak/Ibu pasang di harian Kompas edisi Senin, 2 Juni 2025, dengan ini saya mengajukan lamaran untuk posisi Staf Administrasi di perusahaan yang Bapak/Ibu pimpin."</em>`,materi:"Evaluasi dan Apresiasi – Kesesuaian penggunaan bahasa formal",kesulitan:"Sedang",soal:"Perbaikan manakah yang paling tepat jika kalimat tersebut dianggap kurang tepat dari segi kelaziman penulisan surat resmi?",pilihan:{A:"Mengganti 'Bapak/Ibu' dengan 'Anda' untuk kesan yang lebih modern dan profesional",B:"Menghapus kata 'dengan ini' karena dianggap berlebihan dan tidak baku dalam surat lamaran",C:"Mengganti 'perusahaan yang Bapak/Ibu pimpin' dengan nama perusahaan yang spesifik untuk menunjukkan keseriusan pelamar",D:"Menggunakan kata 'apply' sebagai pengganti 'mengajukan lamaran' agar terkesan lebih profesional",E:"Mengganti 'harian Kompas' dengan nama media yang lebih bergengsi agar kesan formal lebih kuat"},kunci:"C",pembahasan:`Dalam surat lamaran resmi yang profesional, mencantumkan nama perusahaan secara spesifik (bukan "perusahaan yang Bapak/Ibu pimpin") adalah standar yang lazim karena menunjukkan bahwa surat ini dibuat khusus untuk perusahaan tersebut, bukan surat generik. Ini mencerminkan kesungguhan pelamar. Pilihan A kurang tepat karena 'Anda' kurang formal. Pilihan B keliru karena 'dengan ini' adalah frasa baku. Pilihan D tidak tepat—mencampurkan bahasa Inggris tidak dianjurkan. Pilihan E tidak relevan.`,a:1.4,b:0.2},
+  {id:30,teks_judul:"Resensi Novel: Bumi Tak Bertepian",teks:`Novel "Bumi Tak Bertepian" karya Aditya Marendra (2024) hadir dengan premis yang ambisius: bagaimana seseorang membangun kembali identitasnya setelah kehilangan seluruh kenangan masa lalu akibat kecelakaan. Marendra menulis dengan kepadatan emosional yang mengesankan, tanpa pernah jatuh ke dalam melodrama murahan. Setiap kalimat terasa dipilih dengan cermat, memberi ruang bagi pembaca untuk turut merasakan disorientasi yang dialami tokoh utamanya.<br><br>Kekuatan novel ini terletak pada cara Marendra membangun dunia batin tokohnya secara bertahap—bukan melalui flashback yang menggurui, melainkan melalui detail-detail kecil yang perlahan membentuk mozaik identitas. Kelemahan satu-satunya yang saya temukan adalah tempo narasi di bagian tengah yang terasa lebih lambat dibandingkan bagian awal dan akhir, seolah penulis kehilangan momentum sejenak sebelum membangun kembali intensitasnya menjelang akhir.`,materi:"Pemahaman Inferensial – Menyimpulkan gagasan utama resensi",kesulitan:"Sangat Sulit",soal:"Manakah pernyataan yang paling tepat merangkum penilaian peresensi terhadap novel tersebut?",pilihan:{A:"Novel ini gagal karena temponya terlalu lambat dan alur ceritanya tidak menarik",B:"Novel ini dinilai sangat sempurna tanpa kelemahan apapun dari segi narasi maupun emosi",C:"Novel ini memiliki kekuatan pada kedalaman emosional dan teknik narasi, dengan satu kelemahan pada tempo di bagian tengah",D:"Peresensi menolak premis novel ini karena terlalu ambisius dan tidak berhasil dieksekusi oleh penulis",E:"Novel ini hanya cocok untuk pembaca yang sudah familiar dengan genre amnesia"},kunci:"C",pembahasan:`Resensi menyampaikan penilaian berimbang: kekuatan novel ada pada kepadatan emosional, pemilihan kalimat yang cermat, dan teknik membangun karakter melalui detail kecil. Satu-satunya kelemahan adalah tempo narasi yang melambat di bagian tengah. Pilihan A menafikan penilaian positif yang dominan. Pilihan B tidak tepat karena ada kelemahan yang disebutkan. Pilihan D berlawanan dengan isi resensi yang memuji eksekusi. Pilihan E adalah klaim yang tidak ada dalam resensi.`,a:2.0,b:1.3}
+];
+
+// ===================================================
+// STATE
+// ===================================================
+const STORAGE_KEY = 'tka_bi_2025';
+const TOTAL_Q = QUESTIONS.length;
+const DURATION = 75 * 60; // seconds
+
+let state = {
+  started: false,
+  submitted: false,
+  startTime: null,
+  endTime: null,
+  currentQ: 0,
+  answers: {},    // {qId: 'A'|'B'|'C'|'D'|'E'}
+  flagged: {},    // {qId: true}
+  results: null
+};
+
+let timerInterval = null;
+
+// ===================================================
+// STORAGE
+// ===================================================
+function saveState() {
+  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch(e) {}
+}
+
+function loadState() {
+  try {
+    const s = localStorage.getItem(STORAGE_KEY);
+    if (s) {
+      const loaded = JSON.parse(s);
+      if (loaded && loaded.started && !loaded.submitted) {
+        // Check if time already expired
+        const elapsed = Math.floor((Date.now() - loaded.startTime) / 1000);
+        if (elapsed >= DURATION) {
+          loaded.submitted = true;
+        }
+        state = loaded;
+        return true;
+      }
+    }
+  } catch(e) {}
+  return false;
+}
+
+function clearState() {
+  try { localStorage.removeItem(STORAGE_KEY); } catch(e) {}
+}
+
+// ===================================================
+// TIMER
+// ===================================================
+function getSecondsRemaining() {
+  if (!state.startTime) return DURATION;
+  const elapsed = Math.floor((Date.now() - state.startTime) / 1000);
+  return Math.max(0, DURATION - elapsed);
+}
+
+function formatTime(secs) {
+  const m = Math.floor(secs / 60).toString().padStart(2, '0');
+  const s = (secs % 60).toString().padStart(2, '0');
+  return `${m}:${s}`;
+}
+
+const warningsShown = {15: false, 5: false, 1: false};
+
+function startTimer() {
+  if (timerInterval) clearInterval(timerInterval);
+  timerInterval = setInterval(() => {
+    const rem = getSecondsRemaining();
+    updateTimerDisplay(rem);
+
+    // Warnings
+    const mins = Math.floor(rem / 60);
+    if (rem <= 15*60 && rem > 15*60-2 && !warningsShown[15]) {
+      warningsShown[15] = true;
+      showTimeWarning(15);
+    }
+    if (rem <= 5*60 && rem > 5*60-2 && !warningsShown[5]) {
+      warningsShown[5] = true;
+      showTimeWarning(5);
+    }
+    if (rem <= 60 && rem > 58 && !warningsShown[1]) {
+      warningsShown[1] = true;
+      showTimeWarning(1);
+    }
+
+    if (rem <= 0) {
+      clearInterval(timerInterval);
+      autoSubmit();
+    }
+  }, 1000);
+}
+
+function updateTimerDisplay(secs) {
+  const el = document.getElementById('timerDisplay');
+  el.textContent = formatTime(secs);
+  el.className = 'timer-display';
+  if (secs <= 60) el.classList.add('danger');
+  else if (secs <= 5*60) el.classList.add('warn');
+}
+
+function showTimeWarning(mins) {
+  const modal = document.getElementById('timeModal');
+  document.getElementById('timeModalTitle').textContent = `⏱ Waktu Tersisa ${mins} Menit`;
+  document.getElementById('timeModalMsg').textContent =
+    `Kamu memiliki waktu tersisa ${mins} menit. Periksa kembali jawabanmu sebelum mengumpulkan.`;
+  modal.classList.add('open');
+}
+
+// ===================================================
+// SCREENS
+// ===================================================
+function showScreen(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+
+// ===================================================
+// EXAM
+// ===================================================
+function startExam() {
+  state.started = true;
+  state.startTime = Date.now();
+  saveState();
+  showScreen('examScreen');
+  buildNumGrid();
+  renderQuestion(state.currentQ);
+  updateSidebar();
+  startTimer();
+  updateTimerDisplay(DURATION);
+}
+
+function resumeExam() {
+  showScreen('examScreen');
+  buildNumGrid();
+  renderQuestion(state.currentQ);
+  updateSidebar();
+  startTimer();
+  updateTimerDisplay(getSecondsRemaining());
+}
+
+function buildNumGrid() {
+  const grids = ['numGrid', 'numGridMobile', 'numGridMobileInline'];
+  grids.forEach(gid => {
+    const grid = document.getElementById(gid);
+    if (!grid) return;
+    grid.innerHTML = '';
+    for (let i = 0; i < TOTAL_Q; i++) {
+      const btn = document.createElement('button');
+      btn.className = 'num-btn';
+      btn.textContent = i + 1;
+      btn.dataset.idx = i;
+      btn.onclick = () => { goToQuestion(i); closeMobileDrawer(); };
+      grid.appendChild(btn);
+    }
+  });
+  updateGridColors();
+}
+
+function updateGridColors() {
+  const allBtns = document.querySelectorAll('.num-btn');
+  allBtns.forEach(btn => {
+    const idx = parseInt(btn.dataset.idx);
+    const q = QUESTIONS[idx];
+    const isActive = idx === state.currentQ;
+    const answered = state.answers[q.id] !== undefined;
+    const flagged = state.flagged[q.id];
+
+    btn.className = 'num-btn';
+    if (isActive) {
+      btn.classList.add('active');
+      if (answered) btn.dataset.extra = 'answered';
+      else if (flagged) btn.dataset.extra = 'flagged';
+      else btn.dataset.extra = '';
+    } else if (flagged) {
+      btn.classList.add('flagged');
+    } else if (answered) {
+      btn.classList.add('answered');
+    }
+  });
+}
+
+function renderQuestion(idx) {
+  const q = QUESTIONS[idx];
+  state.currentQ = idx;
+  saveState();
+
+  // Update topbar
+  document.getElementById('topbarProgress').textContent = `Soal ${idx+1} dari ${TOTAL_Q}`;
+
+  const diffClass = q.kesulitan.toLowerCase().replace(' ', '-');
+  const diffLabel = `<span class="q-difficulty ${diffClass}">${q.kesulitan}</span>`;
+
+  // Setiap soal menampilkan bacaan lengkap, termasuk soal lanjutan
+  // yang menggunakan teks dengan judul sama.
+  const sourceQuestion = q.teks
+    ? q
+    : QUESTIONS.find(item => item.teks_judul === q.teks_judul && item.teks);
+  const teksHtml = sourceQuestion && sourceQuestion.teks
+    ? `<div class="q-text-box">
+      <div class="q-teks-title">📄 ${q.teks_judul}</div>
+      <div>${sourceQuestion.teks}</div>
+    </div>`
+    : '';
+
+  const selectedAns = state.answers[q.id];
+  const isFlagged = state.flagged[q.id];
+
+  let optionsHtml = '';
+  ['A','B','C','D','E'].forEach(letter => {
+    const isSelected = selectedAns === letter;
+    optionsHtml += `
+    <div class="option-item ${isSelected ? 'selected' : ''}" data-letter="${letter}" onclick="selectAnswer('${letter}')">
+      <div class="opt-letter">${letter}</div>
+      <div class="opt-text">${q.pilihan[letter]}</div>
+    </div>`;
+  });
+
+  const card = document.getElementById('questionCard');
+  card.innerHTML = `
+    <div class="q-header">
+      <div class="q-num">${idx+1}</div>
+      <div>
+        <div class="q-meta">${q.materi}${diffLabel}</div>
+      </div>
+    </div>
+    ${teksHtml}
+    <div class="q-question">${q.soal}</div>
+    <div class="options-list">${optionsHtml}</div>
+    <div class="q-nav">
+      <button class="btn-nav" onclick="prevQuestion()" ${idx === 0 ? 'disabled' : ''}>← Sebelumnya</button>
+      <button class="btn-flag ${isFlagged ? 'flagged' : ''}" onclick="toggleFlag()">
+        ${isFlagged ? '🚩 Batalkan Tanda' : '🏳 Tandai Ragu-ragu'}
+      </button>
+      <button class="btn-nav" onclick="nextQuestion()" ${idx === TOTAL_Q-1 ? 'disabled' : ''}>Berikutnya →</button>
+      <button class="btn-submit" onclick="openSubmitModal()">Kirim Jawaban</button>
+    </div>`;
+
+  updateMobileButtons(idx, isFlagged);
+  updateGridColors();
+  updateSidebar();
+  document.getElementById('questionArea').scrollTo({ top: 0 });
+}
+
+function updateMobileButtons(idx, isFlagged) {
+  const p = document.getElementById('btnPrevMobile');
+  const n = document.getElementById('btnNextMobile');
+  const f = document.getElementById('btnFlagMobile');
+  if (p) p.disabled = idx === 0;
+  if (n) n.disabled = idx === TOTAL_Q - 1;
+  if (f) {
+    f.textContent = isFlagged ? '🚩 Batal' : '🏳 Ragu';
+    f.className = `btn-flag ${isFlagged ? 'flagged' : ''}`;
+  }
+}
+
+function selectAnswer(letter) {
+  const q = QUESTIONS[state.currentQ];
+  state.answers[q.id] = letter;
+  saveState();
+  // Update UI without full re-render
+  document.querySelectorAll('.option-item').forEach(el => {
+    el.classList.toggle('selected', el.dataset.letter === letter);
+    el.querySelector('.opt-letter').style.background = el.dataset.letter === letter ? 'var(--primary)' : '';
+    el.querySelector('.opt-letter').style.borderColor = el.dataset.letter === letter ? 'var(--primary)' : '';
+    el.querySelector('.opt-letter').style.color = el.dataset.letter === letter ? '#fff' : '';
+  });
+  updateGridColors();
+  updateSidebar();
+}
+
+function toggleFlag() {
+  const q = QUESTIONS[state.currentQ];
+  if (state.flagged[q.id]) {
+    delete state.flagged[q.id];
+  } else {
+    state.flagged[q.id] = true;
+  }
+  saveState();
+  renderQuestion(state.currentQ);
+}
+
+function prevQuestion() {
+  if (state.currentQ > 0) renderQuestion(state.currentQ - 1);
+}
+
+function nextQuestion() {
+  if (state.currentQ < TOTAL_Q - 1) renderQuestion(state.currentQ + 1);
+}
+
+function goToQuestion(idx) {
+  renderQuestion(idx);
+}
+
+function updateSidebar() {
+  const answered = Object.keys(state.answers).length;
+  const unanswered = TOTAL_Q - answered;
+  const flagged = Object.keys(state.flagged).length;
+
+  ['sidebarAnswered','drawerAnswered'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.textContent = answered;
+  });
+  ['sidebarUnanswered','drawerUnanswered'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.textContent = unanswered;
+  });
+  ['sidebarFlagged','drawerFlagged'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.textContent = flagged;
+  });
+}
+
+// ===================================================
+// SUBMIT
+// ===================================================
+function openSubmitModal() {
+  const answered = Object.keys(state.answers).length;
+  const unanswered = TOTAL_Q - answered;
+  const flagged = Object.keys(state.flagged).length;
+
+  document.getElementById('submitModalStats').innerHTML = `
+    <div class="ms-item"><strong style="color:var(--success)">${answered}</strong>Sudah dijawab</div>
+    <div class="ms-item"><strong style="color:var(--text-muted)">${unanswered}</strong>Belum dijawab</div>
+    <div class="ms-item"><strong style="color:var(--warning)">${flagged}</strong>Ditandai ragu-ragu</div>
+    <div class="ms-item"><strong>${TOTAL_Q}</strong>Total soal</div>`;
+
+  document.getElementById('submitModal').classList.add('open');
+}
+
+function autoSubmit() {
+  if (state.submitted) return;
+  state.submitted = true;
+  state.endTime = Date.now();
+  saveState();
+  showResults();
+}
+
+function confirmSubmit() {
+  if (state.submitted) return;
+  state.submitted = true;
+  state.endTime = Date.now();
+  document.getElementById('submitModal').classList.remove('open');
+  clearInterval(timerInterval);
+  saveState();
+  showResults();
+}
+
+// ===================================================
+// IRT 2PL SCORING
+// ===================================================
+function irtProb(theta, a, b) {
+  return 1 / (1 + Math.exp(-a * (theta - b)));
+}
+
+function logLikelihood(theta, responses) {
+  let ll = 0;
+  responses.forEach(({a, b, correct}) => {
+    const p = irtProb(theta, a, b);
+    const eps = 1e-10;
+    ll += correct ? Math.log(p + eps) : Math.log(1 - p + eps);
+  });
+  return ll;
+}
+
+function estimateTheta(responses) {
+  if (responses.length === 0) return 0;
+
+  const allCorrect = responses.every(r => r.correct);
+  const allWrong = responses.every(r => !r.correct);
+
+  // MAP with N(0,1) prior for extreme cases
+  const priorSd = 1.0;
+
+  function mapObjective(theta) {
+    let ll = logLikelihood(theta, responses);
+    ll -= (theta * theta) / (2 * priorSd * priorSd); // log prior
+    return ll;
+  }
+
+  // MLE via Newton-Raphson for normal cases, MAP for extreme
+  const useMAP = allCorrect || allWrong;
+
+  let theta = 0;
+  const maxIter = 50;
+  const tol = 1e-6;
+
+  for (let iter = 0; iter < maxIter; iter++) {
+    let d1 = 0, d2 = 0;
+    responses.forEach(({a, b, correct}) => {
+      const p = irtProb(theta, a, b);
+      const q = 1 - p;
+      const r = correct ? 1 : 0;
+      d1 += a * (r - p);
+      d2 -= a * a * p * q;
+    });
+
+    if (useMAP) {
+      d1 -= theta / (priorSd * priorSd);
+      d2 -= 1 / (priorSd * priorSd);
+    }
+
+    if (Math.abs(d2) < 1e-10) break;
+    const delta = d1 / d2;
+    theta -= delta;
+    theta = Math.max(-4, Math.min(4, theta));
+    if (Math.abs(delta) < tol) break;
+  }
+
+  return theta;
+}
+
+// Φ(x) standard normal CDF
+function normalCDF(x) {
+  const a1 = 0.254829592, a2 = -0.284496736, a3 = 1.421413741;
+  const a4 = -1.453152027, a5 = 1.061405429, p = 0.3275911;
+  const sign = x < 0 ? -1 : 1;
+  x = Math.abs(x) / Math.sqrt(2);
+  const t = 1.0 / (1.0 + p * x);
+  const y = 1.0 - (((((a5*t+a4)*t+a3)*t+a2)*t+a1)*t)*Math.exp(-x*x);
+  return 0.5 * (1.0 + sign * y);
+}
+
+function thetaToScore(theta) {
+  // Scale theta using the normal CDF, then map to the 200–800 reporting scale
+  const f = normalCDF(theta);
+  return Math.round(200 + 600 * f);
+}
+
+// ===================================================
+// RESULTS
+// ===================================================
+function showResults() {
+  // Build responses array (only answered questions)
+  const responses = [];
+  let correct = 0, wrong = 0, skip = 0;
+
+  QUESTIONS.forEach(q => {
+    const ans = state.answers[q.id];
+    if (ans === undefined) {
+      skip++;
+      // missing: not included in theta estimation
+    } else {
+      const isCorrect = ans === q.kunci;
+      if (isCorrect) correct++; else wrong++;
+      responses.push({ a: q.a, b: q.b, correct: isCorrect });
+    }
+  });
+
+  const theta = estimateTheta(responses);
+  // Do not show the neutral IRT midpoint as a score when the user answered nothing.
+  const score = responses.length > 0 ? thetaToScore(theta) : '—';
+  const pct = responses.length > 0 ? Math.round((correct / responses.length) * 100) : 0;
+
+  // Time taken
+  const elapsed = state.endTime - state.startTime;
+  const elapsedSecs = Math.floor(elapsed / 1000);
+  const em = Math.floor(elapsedSecs / 60);
+  const es = elapsedSecs % 60;
+  const timeStr = `${em} menit ${es} detik`;
+
+  // Competency breakdown
+  const compData = {};
+  QUESTIONS.forEach(q => {
+    const comp = q.materi.split('–')[0].trim();
+    if (!compData[comp]) compData[comp] = {correct:0, total:0};
+    const ans = state.answers[q.id];
+    if (ans !== undefined) {
+      compData[comp].total++;
+      if (ans === q.kunci) compData[comp].correct++;
+    }
+  });
+
+  state.results = { theta, score, correct, wrong, skip, pct, timeStr, compData };
+
+  // Render
+  document.getElementById('finalScore').textContent = score;
+  document.getElementById('finalTheta').textContent = responses.length > 0 ? `θ = ${theta.toFixed(3)}` : 'θ = — (belum ada jawaban)';
+  document.getElementById('rCorrect').textContent = correct;
+  document.getElementById('rWrong').textContent = wrong;
+  document.getElementById('rSkip').textContent = skip;
+  document.getElementById('rPct').textContent = pct + '%';
+  document.getElementById('timeTaken').textContent = `Waktu pengerjaan: ${timeStr}`;
+
+  let compHtml = '';
+  Object.entries(compData).forEach(([comp, data]) => {
+    const compPct = data.total > 0 ? Math.round((data.correct/data.total)*100) : '-';
+    compHtml += `<div class="comp-row">
+      <span class="comp-name">${comp}</span>
+      <span class="comp-score">${data.correct}/${data.total} (${compPct}%)</span>
+    </div>`;
+  });
+  document.getElementById('compRows').innerHTML = compHtml;
+
+  showScreen('resultScreen');
+}
+
+// ===================================================
+// REVIEW
+// ===================================================
+let reviewPage = 0;
+
+function buildReview() {
+  const container = document.getElementById('reviewCards');
+  container.innerHTML = '';
+
+  const q = QUESTIONS[reviewPage];
+  const userAns = state.answers[q.id];
+  const isCorrect = userAns === q.kunci;
+  const isSkip = userAns === undefined;
+
+  let badgeHtml;
+  if (isSkip) {
+    badgeHtml = `<span class="rev-badge rev-skip">⬜ Tidak Dijawab</span>`;
+  } else if (isCorrect) {
+    badgeHtml = `<span class="rev-badge rev-correct">✓ Benar</span>`;
+  } else {
+    badgeHtml = `<span class="rev-badge rev-wrong">✗ Salah</span>`;
+  }
+
+  let teksHtml = '';
+  if (q.teks) {
+    teksHtml = `<div class="q-text-box" style="font-size:13px;margin-bottom:14px">
+      <div class="q-teks-title">📄 ${q.teks_judul}</div>
+      <div>${q.teks}</div>
+    </div>`;
+  }
+
+  let optsHtml = '';
+  ['A','B','C','D','E'].forEach(letter => {
+    let cls = '';
+    if (letter === q.kunci) cls = 'correct-ans';
+    else if (letter === userAns && !isCorrect) cls = 'user-wrong';
+    const indicator = letter === q.kunci ? ' ✓ Kunci Jawaban' : (letter === userAns && !isCorrect ? ' ✗ Jawabanmu' : '');
+    optsHtml += `<div class="review-opt ${cls}">
+      <strong style="min-width:18px">${letter}.</strong>
+      <span>${q.pilihan[letter]}${indicator ? `<em style="font-size:11px;margin-left:6px">${indicator}</em>` : ''}</span>
+    </div>`;
+  });
+
+  const diffClass = q.kesulitan.toLowerCase().replace(' ', '-');
+
+  container.innerHTML = `
+  <div class="review-card">
+    <div class="review-card-header">
+      <div>
+        <strong>Soal ${reviewPage+1}</strong>
+        <span style="font-size:12px;color:var(--text-muted);margin-left:8px">${q.materi}</span>
+        <span class="q-difficulty ${diffClass}" style="margin-left:6px">${q.kesulitan}</span>
+      </div>
+      ${badgeHtml}
+    </div>
+    ${teksHtml}
+    <div class="review-q-text">${q.soal}</div>
+    <div class="review-options">${optsHtml}</div>
+    <div class="pembahasan-box">
+      <strong>💡 Pembahasan:</strong>
+      ${q.pembahasan}
+    </div>
+    <div style="margin-top:12px;font-size:12px;color:var(--text-muted)">
+      Parameter IRT: Daya Pembeda (a) = ${q.a} | Tingkat Kesulitan (b) = ${q.b}
+    </div>
+  </div>`;
+
+  document.getElementById('reviewPageInfo').textContent = `${reviewPage+1} / ${TOTAL_Q}`;
+  document.getElementById('btnReviewPrev').disabled = reviewPage === 0;
+  document.getElementById('btnReviewNext').disabled = reviewPage === TOTAL_Q - 1;
+  window.scrollTo({ top: 0 });
+}
+
+// ===================================================
+// MOBILE DRAWER
+// ===================================================
+function closeMobileDrawer() {
+  document.getElementById('mobileGridDrawer').classList.remove('open');
+}
+
+// ===================================================
+// TOAST
+// ===================================================
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2500);
+}
+
+// ===================================================
+// EVENT LISTENERS
+// ===================================================
+document.getElementById('btnStart').onclick = startExam;
+
+document.getElementById('btnSubmitSidebar').onclick = openSubmitModal;
+document.getElementById('btnSubmitMobile').onclick = openSubmitModal;
+
+document.getElementById('btnCancelSubmit').onclick = () => {
+  document.getElementById('submitModal').classList.remove('open');
+};
+document.getElementById('btnConfirmSubmit').onclick = confirmSubmit;
+
+document.getElementById('btnTimeOk').onclick = () => {
+  document.getElementById('timeModal').classList.remove('open');
+};
+
+document.getElementById('btnGoReview').onclick = () => {
+  reviewPage = 0;
+  buildReview();
+  showScreen('reviewScreen');
+};
+
+document.getElementById('btnRetry').onclick = () => {
+  clearState();
+  clearInterval(timerInterval);
+  state = {
+    started:false, submitted:false, startTime:null, endTime:null,
+    currentQ:0, answers:{}, flagged:{}, results:null
+  };
+  Object.keys(warningsShown).forEach(k => warningsShown[k] = false);
+  showScreen('welcomeScreen');
+};
+
+document.getElementById('btnBackToResult').onclick = () => {
+  showScreen('resultScreen');
+};
+
+document.getElementById('btnReviewPrev').onclick = () => {
+  if (reviewPage > 0) { reviewPage--; buildReview(); }
+};
+document.getElementById('btnReviewNext').onclick = () => {
+  if (reviewPage < TOTAL_Q-1) { reviewPage++; buildReview(); }
+};
+
+document.getElementById('btnPrevMobile') && (document.getElementById('btnPrevMobile').onclick = prevQuestion);
+document.getElementById('btnNextMobile') && (document.getElementById('btnNextMobile').onclick = nextQuestion);
+document.getElementById('btnFlagMobile') && (document.getElementById('btnFlagMobile').onclick = toggleFlag);
+
+document.getElementById('mobileGridToggle').onclick = () => {
+  document.getElementById('mobileGridDrawer').classList.toggle('open');
+};
+
+// Close drawer on outside click
+document.addEventListener('click', (e) => {
+  const drawer = document.getElementById('mobileGridDrawer');
+  const toggle = document.getElementById('mobileGridToggle');
+  if (drawer.classList.contains('open') && !drawer.contains(e.target) && !toggle.contains(e.target)) {
+    closeMobileDrawer();
+  }
+});
+
+// ===================================================
+// INIT
+// ===================================================
+window.addEventListener('DOMContentLoaded', () => {
+  setTimeout(() => {
+    document.getElementById('loadingOverlay').style.display = 'none';
+
+    const resumed = loadState();
+    if (resumed) {
+      if (state.submitted) {
+        if (state.results) {
+          // Show results from saved state — recalculate
+          showResults();
+        } else {
+          showResults();
+        }
+      } else {
+        showToast('Progres ujianmu dipulihkan 🔄');
+        resumeExam();
+      }
+    } else {
+      showScreen('welcomeScreen');
+    }
+  }, 600);
+});
+</script>
+</body>
+</html>
